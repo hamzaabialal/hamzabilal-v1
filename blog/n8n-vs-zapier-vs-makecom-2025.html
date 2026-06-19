@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>n8n vs Zapier vs Make.com: The Complete 2025 Comparison — Hamza Bilal</title>
+<meta name="description" content="After building 30+ automation workflows across all three platforms for clients in USA, UK, Germany, and Australia — here's my honest take on when to use each one."/>
+<meta name="author" content="Hamza Bilal"/>
+<link rel="canonical" href="https://hamzabilal.dev/blog/n8n-vs-zapier-vs-makecom-2025.html"/>
+<link rel="icon" href="/favicon.ico"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg:#0a0a0a; --bg2:#111; --bg3:#181818; --border:rgba(255,255,255,0.08); --text:#fff; --text2:rgba(255,255,255,0.72); --text3:rgba(255,255,255,0.48); --accent:#a8f56a; --radius:16px; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; line-height:1.7; }
+  nav { position:sticky; top:0; z-index:100; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 5%; display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .nav-logo { font-size:1.1rem; font-weight:700; color:var(--text); text-decoration:none; letter-spacing:-0.02em; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { color:var(--text3); text-decoration:none; font-size:0.9rem; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-cta { background:var(--accent); color:#000; padding:0.5rem 1.25rem; border-radius:100px; text-decoration:none; font-size:0.85rem; font-weight:600; }
+
+  .post-hero { padding:4rem 5% 3rem; max-width:800px; margin:0 auto; }
+  .back-link { display:inline-flex; align-items:center; gap:0.4rem; color:var(--text3); text-decoration:none; font-size:0.85rem; margin-bottom:2rem; transition:color 0.2s; }
+  .back-link:hover { color:var(--accent); }
+  .post-category { display:inline-block; background:rgba(168,245,106,0.1); color:var(--accent); border:1px solid rgba(168,245,106,0.2); padding:0.3rem 0.9rem; border-radius:100px; font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:1.25rem; }
+  .post-hero h1 { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; letter-spacing:-0.03em; line-height:1.2; margin-bottom:1rem; }
+  .post-meta { display:flex; gap:1.5rem; color:var(--text3); font-size:0.85rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .post-meta span { display:flex; align-items:center; gap:0.35rem; }
+  .divider { width:100%; height:1px; background:var(--border); margin:2rem 0; }
+
+  .post-body { max-width:800px; margin:0 auto; padding:0 5% 6rem; }
+  .post-body p { color:var(--text2); margin-bottom:1.25rem; font-size:1rem; }
+  .post-body h2 { font-size:1.4rem; font-weight:700; letter-spacing:-0.02em; margin:2.5rem 0 1rem; color:var(--text); }
+  .post-body h3 { font-size:1.1rem; font-weight:700; margin:1.75rem 0 0.75rem; color:var(--text); }
+  .post-body ul, .post-body ol { color:var(--text2); padding-left:1.5rem; margin-bottom:1.25rem; }
+  .post-body li { margin-bottom:0.5rem; }
+  .post-body strong { color:var(--text); }
+  .post-body code { background:var(--bg3); color:var(--accent); padding:0.15rem 0.5rem; border-radius:6px; font-size:0.875rem; font-family:'Courier New',monospace; }
+  .post-body pre { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; overflow-x:auto; margin:1.5rem 0; }
+  .post-body pre code { background:none; padding:0; color:var(--text2); font-size:0.875rem; line-height:1.7; }
+  .callout { background:rgba(168,245,106,0.06); border:1px solid rgba(168,245,106,0.2); border-radius:var(--radius); padding:1.25rem 1.5rem; margin:1.75rem 0; }
+  .callout p { color:var(--text2); margin:0; }
+  .callout strong { color:var(--accent); }
+  table { width:100%; border-collapse:collapse; margin:1.75rem 0; font-size:0.9rem; overflow-x:auto; display:block; }
+  th { background:var(--bg2); color:var(--text); padding:0.75rem 1rem; text-align:left; font-weight:700; border-bottom:2px solid var(--border); white-space:nowrap; }
+  td { padding:0.75rem 1rem; color:var(--text2); border-bottom:1px solid var(--border); }
+  tr:hover td { background:rgba(255,255,255,0.02); }
+  .tag-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.5rem 0; }
+  .tag { font-size:0.78rem; color:var(--text3); background:rgba(255,255,255,0.05); padding:0.25rem 0.7rem; border-radius:100px; border:1px solid var(--border); }
+  .related { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:2rem; margin-top:3rem; }
+  .related h3 { font-size:1rem; font-weight:700; margin-bottom:1rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; font-size:0.8rem; }
+  .related-links { display:flex; flex-direction:column; gap:0.75rem; }
+  .related-links a { color:var(--text2); text-decoration:none; font-size:0.9rem; font-weight:600; transition:color 0.2s; }
+  .related-links a:hover { color:var(--accent); }
+  footer { border-top:1px solid var(--border); padding:2rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  footer p { font-size:0.85rem; color:var(--text3); }
+  footer a { color:var(--text2); text-decoration:none; font-size:0.85rem; }
+  footer a:hover { color:var(--accent); }
+  @media(max-width:600px) { .nav-links { display:none; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Hamza<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/blogs.html">Blog</a></li>
+    <li><a href="/#work">Work</a></li>
+  </ul>
+  <a href="mailto:hamzaabialal@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<div class="post-hero">
+  <a href="/blogs.html" class="back-link">← Back to Blog</a>
+  <div class="post-category">n8n · Zapier · Make.com</div>
+  <h1>n8n vs Zapier vs Make.com: The Complete 2025 Comparison for Businesses</h1>
+  <div class="post-meta">
+    <span>✍️ Hamza Bilal</span>
+    <span>📅 March 2025</span>
+    <span>⏱ 8 min read</span>
+  </div>
+  <div class="tag-row">
+    <span class="tag">n8n</span><span class="tag">Zapier</span><span class="tag">Make.com</span><span class="tag">Comparison</span><span class="tag">Automation</span>
+  </div>
+  <div class="divider"></div>
+</div>
+
+<div class="post-body">
+  <p>I've built 30+ automation workflows across n8n, Zapier, and Make.com for clients in the USA, UK, Germany, and Australia. Every time a client asks "which tool should I use?" — I give them the same answer: <strong>it depends on three things</strong>: your tech comfort level, your volume, and your budget.</p>
+  <p>Here's my no-BS breakdown after shipping real production workflows on all three platforms.</p>
+
+  <h2>The Short Answer</h2>
+  <ul>
+    <li><strong>Zapier</strong> — best for non-technical teams that need something working today, with no DevOps</li>
+    <li><strong>Make.com</strong> — best for visual thinkers who need moderate complexity at a reasonable price</li>
+    <li><strong>n8n</strong> — best for technical founders and engineers who want zero limits and self-hosted control</li>
+  </ul>
+
+  <div class="callout"><p><strong>TL;DR:</strong> I personally run most client automations on n8n (self-hosted on AWS EC2). It costs under $10/month instead of $500+/month on Zapier, and handles complexity Zapier simply can't.</p></div>
+
+  <h2>Pricing Reality Check</h2>
+  <p>Pricing is where most businesses get surprised. Let me show you what real-world usage looks like:</p>
+
+  <table>
+    <thead><tr><th>Platform</th><th>Free Tier</th><th>1,000 tasks/day</th><th>Self-hosted</th></tr></thead>
+    <tbody>
+      <tr><td>Zapier</td><td>100 tasks/month</td><td>~$400–800/month</td><td>Not available</td></tr>
+      <tr><td>Make.com</td><td>1,000 ops/month</td><td>~$50–100/month</td><td>Not available</td></tr>
+      <tr><td>n8n</td><td>Unlimited (self-hosted)</td><td>~$8/month (EC2)</td><td>Full Docker support</td></tr>
+    </tbody>
+  </table>
+
+  <p>One of my clients was paying <strong>$840/month for Zapier</strong>. We migrated 47 Zaps to self-hosted n8n in 3 weeks. Their bill dropped to $8/month (EC2 t3.small). That's $9,984 saved per year.</p>
+
+  <h2>Feature-by-Feature Breakdown</h2>
+  <h3>Zapier</h3>
+  <p>Zapier wins on simplicity and app coverage. It connects 6,000+ apps. If you need to link HubSpot to Slack to Gmail without any coding, Zapier gets you there in 10 minutes.</p>
+  <p><strong>Where it breaks:</strong> multi-branch logic, loops, large payloads, and anything that needs error recovery. Their "Paths" feature (branching) is clunky. There's no real way to loop over an array of records without burning tasks at 1 task per item.</p>
+  <ul>
+    <li>✅ 6,000+ app connectors</li>
+    <li>✅ Non-technical friendly UI</li>
+    <li>✅ Reliable uptime and support</li>
+    <li>❌ Expensive at scale</li>
+    <li>❌ Limited data transformation</li>
+    <li>❌ No self-hosting</li>
+  </ul>
+
+  <h3>Make.com</h3>
+  <p>Make.com (formerly Integromat) is the visual powerhouse. The drag-and-drop canvas is genuinely great for complex branching scenarios. I use it a lot for clients who want to see and modify their own workflows.</p>
+  <p>It has real array/collection handling, routers, and built-in error handlers. Way more capable than Zapier at a fraction of the price.</p>
+  <ul>
+    <li>✅ Visual canvas — beautiful for complex flows</li>
+    <li>✅ Native array/iterator support</li>
+    <li>✅ Affordable "operations" pricing</li>
+    <li>❌ Complex flows get visually messy</li>
+    <li>❌ No self-hosting</li>
+    <li>❌ Some connectors are shallower than Zapier's</li>
+  </ul>
+
+  <h3>n8n</h3>
+  <p>n8n is what I reach for on any project with real complexity. It's open-source, self-hostable, and the node system is genuinely powerful. You can write JavaScript inside any node, use Python code nodes, loop over anything, call webhooks, handle errors gracefully, and chain AI models together in a single workflow.</p>
+  <p>The learning curve is steeper than Zapier. But once you're past it, you can build things the other platforms literally cannot do.</p>
+  <ul>
+    <li>✅ Self-hosted — zero per-task pricing</li>
+    <li>✅ Code nodes (JS/Python) for custom logic</li>
+    <li>✅ AI/LangChain native integrations</li>
+    <li>✅ Full error handling and retry logic</li>
+    <li>✅ Webhook server built in</li>
+    <li>❌ Requires DevOps for self-hosting</li>
+    <li>❌ Fewer pre-built connectors than Zapier</li>
+  </ul>
+
+  <h2>When I Use Each One</h2>
+  <h3>I use Zapier when:</h3>
+  <ul>
+    <li>The client wants to manage it themselves and has no technical background</li>
+    <li>It's a simple linear trigger → action flow with 2–5 steps</li>
+    <li>The specific app connector only exists on Zapier</li>
+  </ul>
+
+  <h3>I use Make.com when:</h3>
+  <ul>
+    <li>The client wants a visual overview they can share with their team</li>
+    <li>The workflow has moderate branching but the client doesn't want to self-host</li>
+    <li>I'm processing arrays or doing data transformation without custom code</li>
+  </ul>
+
+  <h3>I use n8n when:</h3>
+  <ul>
+    <li>Volume is high (1,000+ triggers/day)</li>
+    <li>The workflow needs code logic, AI models, or custom HTTP calls</li>
+    <li>The client is technical or I'm running it on their AWS account</li>
+    <li>Budget matters and they're currently on a $200+/month Zapier plan</li>
+  </ul>
+
+  <h2>Real-World Example: CRM Lead Routing</h2>
+  <p>Here's the same workflow I've built on all three platforms: <strong>new lead comes in via webhook → classify intent via OpenAI → route to the right sales rep in Close CRM → send Slack notification.</strong></p>
+
+  <h3>On Zapier:</h3>
+  <p>4 Zaps chained together. Hits the 2-minute execution limit on the OpenAI step if the response is slow. Cost: ~$0.08/lead at their team plan pricing. Gets expensive fast.</p>
+
+  <h3>On Make.com:</h3>
+  <p>Single scenario with a Router module. Cleaner. OpenAI call built in natively. Cost: ~$0.003/lead. Good balance.</p>
+
+  <h3>On n8n:</h3>
+  <p>Single workflow. OpenAI node built in. Added a JavaScript node to clean the payload before posting to Close CRM. Added error handling that retries 3 times before Slack-alerting me. Cost: fixed $8/month regardless of volume.</p>
+
+  <div class="callout"><p><strong>My verdict:</strong> For anything beyond 500 leads/month, n8n wins on cost. For anything under 100 leads/month with a non-technical team, Zapier wins on simplicity. Make.com is the best middle ground when budget matters but self-hosting isn't an option.</p></div>
+
+  <h2>Bottom Line</h2>
+  <p>Don't let anyone sell you on one tool being universally "the best." The right choice depends on your volume, technical comfort level, and whether you're willing to self-host. I've shipped production workflows on all three and they all have genuine strengths.</p>
+  <p>If you're not sure which one fits your project, <a href="mailto:hamzaabialal@gmail.com" style="color:var(--accent);">drop me a message</a> and I'll give you a straight answer in 10 minutes.</p>
+
+  <div class="related">
+    <h3>Related Posts</h3>
+    <div class="related-links">
+      <a href="/blog/self-host-n8n-aws-ec2.html">→ How to Self-Host n8n on AWS EC2 (Step-by-Step 2025 Guide)</a>
+      <a href="/blog/migrate-zapier-to-n8n.html">→ How I Migrated 47 Zapier Zaps to Self-Hosted n8n (and Saved $800/month)</a>
+      <a href="/blog/zapier-closeio-openai-auto-reply.html">→ Zapier Outreach with Close.io + OpenAI: Auto-Reply Based on Message Tone</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Hamza Bilal · AI Automation &amp; Backend Engineer</p>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+    <a href="/">Portfolio</a>
+    <a href="/services.html">Services</a>
+    <a href="/blogs.html">Blog</a>
+    <a href="mailto:hamzaabialal@gmail.com">Email</a>
+  </div>
+</footer>
+</body>
+</html>

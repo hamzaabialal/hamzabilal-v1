@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Django REST Framework vs FastAPI: Which to Choose in 2025? — Hamza Bilal</title>
+<meta name="description" content="Based on building production APIs for automation-heavy products — a pragmatic comparison of DRF and FastAPI covering async support, ORM choices, deployment, and when each wins."/>
+<meta name="author" content="Hamza Bilal"/>
+<link rel="canonical" href="https://hamzabilal.dev/blog/django-rest-vs-fastapi.html"/>
+<link rel="icon" href="/favicon.ico"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg:#0a0a0a; --bg2:#111; --bg3:#181818; --border:rgba(255,255,255,0.08); --text:#fff; --text2:rgba(255,255,255,0.72); --text3:rgba(255,255,255,0.48); --accent:#a8f56a; --radius:16px; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; line-height:1.7; }
+  nav { position:sticky; top:0; z-index:100; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 5%; display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .nav-logo { font-size:1.1rem; font-weight:700; color:var(--text); text-decoration:none; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { color:var(--text3); text-decoration:none; font-size:0.9rem; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-cta { background:var(--accent); color:#000; padding:0.5rem 1.25rem; border-radius:100px; text-decoration:none; font-size:0.85rem; font-weight:600; }
+  .post-hero { padding:4rem 5% 3rem; max-width:800px; margin:0 auto; }
+  .back-link { display:inline-flex; align-items:center; gap:0.4rem; color:var(--text3); text-decoration:none; font-size:0.85rem; margin-bottom:2rem; }
+  .back-link:hover { color:var(--accent); }
+  .post-category { display:inline-block; background:rgba(168,245,106,0.1); color:var(--accent); border:1px solid rgba(168,245,106,0.2); padding:0.3rem 0.9rem; border-radius:100px; font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:1.25rem; }
+  .post-hero h1 { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; letter-spacing:-0.03em; line-height:1.2; margin-bottom:1rem; }
+  .post-meta { display:flex; gap:1.5rem; color:var(--text3); font-size:0.85rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .divider { width:100%; height:1px; background:var(--border); margin:2rem 0; }
+  .post-body { max-width:800px; margin:0 auto; padding:0 5% 6rem; }
+  .post-body p { color:var(--text2); margin-bottom:1.25rem; }
+  .post-body h2 { font-size:1.4rem; font-weight:700; letter-spacing:-0.02em; margin:2.5rem 0 1rem; }
+  .post-body h3 { font-size:1.1rem; font-weight:700; margin:1.75rem 0 0.75rem; }
+  .post-body ul, .post-body ol { color:var(--text2); padding-left:1.5rem; margin-bottom:1.25rem; }
+  .post-body li { margin-bottom:0.5rem; }
+  .post-body strong { color:var(--text); }
+  .post-body code { background:var(--bg3); color:var(--accent); padding:0.15rem 0.5rem; border-radius:6px; font-size:0.875rem; font-family:'Courier New',monospace; }
+  .post-body pre { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; overflow-x:auto; margin:1.5rem 0; }
+  .post-body pre code { background:none; padding:0; color:var(--text2); font-size:0.875rem; line-height:1.7; }
+  .callout { background:rgba(168,245,106,0.06); border:1px solid rgba(168,245,106,0.2); border-radius:var(--radius); padding:1.25rem 1.5rem; margin:1.75rem 0; }
+  .callout p { color:var(--text2); margin:0; }
+  .callout strong { color:var(--accent); }
+  table { width:100%; border-collapse:collapse; margin:1.75rem 0; font-size:0.9rem; overflow-x:auto; display:block; }
+  th { background:var(--bg2); color:var(--text); padding:0.75rem 1rem; text-align:left; font-weight:700; border-bottom:2px solid var(--border); white-space:nowrap; }
+  td { padding:0.75rem 1rem; color:var(--text2); border-bottom:1px solid var(--border); }
+  .tag-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.5rem 0; }
+  .tag { font-size:0.78rem; color:var(--text3); background:rgba(255,255,255,0.05); padding:0.25rem 0.7rem; border-radius:100px; border:1px solid var(--border); }
+  .related { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:2rem; margin-top:3rem; }
+  .related h3 { font-size:0.8rem; font-weight:700; margin-bottom:1rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; }
+  .related-links { display:flex; flex-direction:column; gap:0.75rem; }
+  .related-links a { color:var(--text2); text-decoration:none; font-size:0.9rem; font-weight:600; }
+  .related-links a:hover { color:var(--accent); }
+  footer { border-top:1px solid var(--border); padding:2rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  footer p { font-size:0.85rem; color:var(--text3); }
+  footer a { color:var(--text2); text-decoration:none; font-size:0.85rem; }
+  footer a:hover { color:var(--accent); }
+  @media(max-width:600px) { .nav-links { display:none; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Hamza<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/blogs.html">Blog</a></li>
+    <li><a href="/#work">Work</a></li>
+  </ul>
+  <a href="mailto:hamzaabialal@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<div class="post-hero">
+  <a href="/blogs.html" class="back-link">← Back to Blog</a>
+  <div class="post-category">Backend Dev · Python</div>
+  <h1>Django REST Framework vs FastAPI: Which Should You Choose in 2025?</h1>
+  <div class="post-meta">
+    <span>✍️ Hamza Bilal</span>
+    <span>📅 October 2024</span>
+    <span>⏱ 8 min read</span>
+  </div>
+  <div class="tag-row">
+    <span class="tag">Django</span><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">API</span>
+  </div>
+  <div class="divider"></div>
+</div>
+
+<div class="post-body">
+  <p>I've built production APIs in both Django REST Framework and FastAPI for automation-heavy products — gym management PWAs, legal research platforms, fintech dashboards, and AI agent backends. Here's my honest take on when to reach for each one.</p>
+
+  <h2>The Quick Answer</h2>
+  <ul>
+    <li><strong>Choose Django REST Framework</strong> if you need an admin panel, complex ORM relationships, a mature ecosystem, and your team already knows Django</li>
+    <li><strong>Choose FastAPI</strong> if you need async-first performance, automatic OpenAPI docs, strict type safety, and you're building an API (not a full web app)</li>
+  </ul>
+
+  <h2>Feature Comparison</h2>
+  <table>
+    <thead><tr><th>Feature</th><th>Django REST Framework</th><th>FastAPI</th></tr></thead>
+    <tbody>
+      <tr><td>Async support</td><td>Partial (Django 4.1+, limited)</td><td>Native async/await everywhere</td></tr>
+      <tr><td>Data validation</td><td>DRF Serializers</td><td>Pydantic models (type-safe)</td></tr>
+      <tr><td>Auto API docs</td><td>Manual / drf-spectacular</td><td>Built-in (Swagger + ReDoc)</td></tr>
+      <tr><td>ORM</td><td>Django ORM (excellent)</td><td>SQLAlchemy or Tortoise (setup required)</td></tr>
+      <tr><td>Admin panel</td><td>Django Admin (built-in)</td><td>Not included</td></tr>
+      <tr><td>Auth</td><td>DRF token/session auth</td><td>Manual or fastapi-users</td></tr>
+      <tr><td>Performance</td><td>Good (sync)</td><td>Excellent (async, near Node.js speed)</td></tr>
+      <tr><td>Learning curve</td><td>Steeper (more magic)</td><td>Gentler (explicit, Pythonic)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>When Django REST Framework Wins</h2>
+  <h3>1. You need Django Admin</h3>
+  <p>Django Admin is genuinely excellent for internal tools. I used it on the Lavanhu AI project — school administrators could manage reports, users, and settings through a fully-featured admin panel without a single line of frontend code. FastAPI has no equivalent.</p>
+
+  <h3>2. Complex relational data</h3>
+  <p>Django ORM is one of the best ORMs in any language. Prefetch-related, select-related, annotations, and Q objects let you write complex queries cleanly. If your data model has 10+ related tables, Django ORM is more ergonomic than SQLAlchemy 2.0 (though SQLAlchemy is more powerful).</p>
+
+  <h3>3. Established team on Django</h3>
+  <p>Don't switch frameworks because FastAPI is trendy. If your team is productive in Django, the migration cost almost never pays off.</p>
+
+  <h2>When FastAPI Wins</h2>
+  <h3>1. High-concurrency webhook receivers</h3>
+  <p>This is where FastAPI shines for automation projects. n8n webhooks, Stripe webhooks, Twilio callbacks — all of these hit your API at unpredictable times. Async FastAPI handles 10x more concurrent connections than sync Django under the same load.</p>
+
+  <pre><code>@app.post("/webhook/stripe")
+async def stripe_webhook(request: Request, background_tasks: BackgroundTasks):
+    payload = await request.body()
+    # Verify signature, parse event
+    background_tasks.add_task(process_stripe_event, event)
+    return {"status": "received"}  # Return immediately, process async</code></pre>
+
+  <h3>2. AI agent APIs</h3>
+  <p>OpenAI API calls, LangChain chains, and vector DB queries are all I/O-bound. Async FastAPI lets you handle 50+ concurrent agent requests efficiently. Sync Django would block on every OpenAI call.</p>
+
+  <h3>3. Auto-generated client SDKs</h3>
+  <p>FastAPI generates an OpenAPI spec automatically. I use this to auto-generate TypeScript types for frontend clients with <code>openapi-typescript</code>. Zero manual type maintenance.</p>
+
+  <h2>What I Use in Practice</h2>
+  <p>For automation-backend projects (AI agents, webhook processors, n8n receivers), I reach for <strong>FastAPI + SQLAlchemy 2.0 async + Alembic</strong>.</p>
+  <p>For content-heavy or admin-heavy projects (school management systems, internal ops tools), I reach for <strong>Django + DRF + Celery</strong>.</p>
+
+  <div class="callout"><p><strong>The Lavanhu AI school reports project</strong> used Django because school administrators needed to manage content via Django Admin. The <strong>RabbitFunding MCA portal</strong> used FastAPI because it processed 500+ async webhook events per hour from lender APIs.</p></div>
+
+  <h2>The Honest Take</h2>
+  <p>Both are excellent. The "FastAPI is always better" take is wrong. FastAPI wins on async performance and developer ergonomics for pure APIs. Django wins on the full-stack features (admin, ORM maturity, auth). Choose based on what your specific project needs — not what's trending on Twitter.</p>
+
+  <p>If you need a backend built for your automation or AI product, <a href="mailto:hamzaabialal@gmail.com" style="color:var(--accent);">reach out</a> and I'll tell you which framework is the right fit.</p>
+
+  <div class="related">
+    <h3>Related Posts</h3>
+    <div class="related-links">
+      <a href="/blog/fastapi-postgresql-docker.html">→ Production REST APIs with FastAPI + PostgreSQL + Docker (2025)</a>
+      <a href="/blog/openai-n8n-crm-automation.html">→ OpenAI + n8n: Building AI-Powered CRM Automation</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Hamza Bilal · AI Automation &amp; Backend Engineer</p>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+    <a href="/">Portfolio</a>
+    <a href="/services.html">Services</a>
+    <a href="/blogs.html">Blog</a>
+    <a href="mailto:hamzaabialal@gmail.com">Email</a>
+  </div>
+</footer>
+</body>
+</html>

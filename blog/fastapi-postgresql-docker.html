@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Production REST APIs with FastAPI + PostgreSQL + Docker (2025) — Hamza Bilal</title>
+<meta name="description" content="Async FastAPI app with SQLAlchemy 2.0, Alembic migrations, JWT auth, Celery background tasks, and Docker Compose — the exact stack I use for automation backend projects."/>
+<meta name="author" content="Hamza Bilal"/>
+<link rel="canonical" href="https://hamzabilal.dev/blog/fastapi-postgresql-docker.html"/>
+<link rel="icon" href="/favicon.ico"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg:#0a0a0a; --bg2:#111; --bg3:#181818; --border:rgba(255,255,255,0.08); --text:#fff; --text2:rgba(255,255,255,0.72); --text3:rgba(255,255,255,0.48); --accent:#a8f56a; --radius:16px; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; line-height:1.7; }
+  nav { position:sticky; top:0; z-index:100; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 5%; display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .nav-logo { font-size:1.1rem; font-weight:700; color:var(--text); text-decoration:none; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { color:var(--text3); text-decoration:none; font-size:0.9rem; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-cta { background:var(--accent); color:#000; padding:0.5rem 1.25rem; border-radius:100px; text-decoration:none; font-size:0.85rem; font-weight:600; }
+  .post-hero { padding:4rem 5% 3rem; max-width:800px; margin:0 auto; }
+  .back-link { display:inline-flex; align-items:center; gap:0.4rem; color:var(--text3); text-decoration:none; font-size:0.85rem; margin-bottom:2rem; }
+  .back-link:hover { color:var(--accent); }
+  .post-category { display:inline-block; background:rgba(168,245,106,0.1); color:var(--accent); border:1px solid rgba(168,245,106,0.2); padding:0.3rem 0.9rem; border-radius:100px; font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:1.25rem; }
+  .post-hero h1 { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; letter-spacing:-0.03em; line-height:1.2; margin-bottom:1rem; }
+  .post-meta { display:flex; gap:1.5rem; color:var(--text3); font-size:0.85rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .divider { width:100%; height:1px; background:var(--border); margin:2rem 0; }
+  .post-body { max-width:800px; margin:0 auto; padding:0 5% 6rem; }
+  .post-body p { color:var(--text2); margin-bottom:1.25rem; }
+  .post-body h2 { font-size:1.4rem; font-weight:700; letter-spacing:-0.02em; margin:2.5rem 0 1rem; }
+  .post-body h3 { font-size:1.1rem; font-weight:700; margin:1.75rem 0 0.75rem; }
+  .post-body ul, .post-body ol { color:var(--text2); padding-left:1.5rem; margin-bottom:1.25rem; }
+  .post-body li { margin-bottom:0.5rem; }
+  .post-body strong { color:var(--text); }
+  .post-body code { background:var(--bg3); color:var(--accent); padding:0.15rem 0.5rem; border-radius:6px; font-size:0.875rem; font-family:'Courier New',monospace; }
+  .post-body pre { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; overflow-x:auto; margin:1.5rem 0; }
+  .post-body pre code { background:none; padding:0; color:var(--text2); font-size:0.875rem; line-height:1.7; }
+  .callout { background:rgba(168,245,106,0.06); border:1px solid rgba(168,245,106,0.2); border-radius:var(--radius); padding:1.25rem 1.5rem; margin:1.75rem 0; }
+  .callout p { color:var(--text2); margin:0; }
+  .callout strong { color:var(--accent); }
+  .tag-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.5rem 0; }
+  .tag { font-size:0.78rem; color:var(--text3); background:rgba(255,255,255,0.05); padding:0.25rem 0.7rem; border-radius:100px; border:1px solid var(--border); }
+  .related { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:2rem; margin-top:3rem; }
+  .related h3 { font-size:0.8rem; font-weight:700; margin-bottom:1rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; }
+  .related-links { display:flex; flex-direction:column; gap:0.75rem; }
+  .related-links a { color:var(--text2); text-decoration:none; font-size:0.9rem; font-weight:600; }
+  .related-links a:hover { color:var(--accent); }
+  footer { border-top:1px solid var(--border); padding:2rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  footer p { font-size:0.85rem; color:var(--text3); }
+  footer a { color:var(--text2); text-decoration:none; font-size:0.85rem; }
+  footer a:hover { color:var(--accent); }
+  @media(max-width:600px) { .nav-links { display:none; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Hamza<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/blogs.html">Blog</a></li>
+    <li><a href="/#work">Work</a></li>
+  </ul>
+  <a href="mailto:hamzaabialal@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<div class="post-hero">
+  <a href="/blogs.html" class="back-link">← Back to Blog</a>
+  <div class="post-category">Backend Dev · FastAPI · Docker</div>
+  <h1>Production REST APIs with FastAPI + PostgreSQL + Docker (2025)</h1>
+  <div class="post-meta">
+    <span>✍️ Hamza Bilal</span>
+    <span>📅 January 2025</span>
+    <span>⏱ 14 min read</span>
+  </div>
+  <div class="tag-row">
+    <span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">Python</span><span class="tag">Backend</span>
+  </div>
+  <div class="divider"></div>
+</div>
+
+<div class="post-body">
+  <p>This is the exact backend stack I use for automation-heavy projects — FastAPI, SQLAlchemy 2.0, Alembic, JWT auth, Celery for background tasks, and Docker Compose for local and production deployment. I've shipped this on AWS EC2 and ECS for clients in fintech, legaltech, and gym management.</p>
+
+  <h2>Project Structure</h2>
+  <pre><code>app/
+  api/
+    routes/
+      auth.py
+      leads.py
+      webhooks.py
+    deps.py         # shared dependencies (DB session, current user)
+  core/
+    config.py       # pydantic settings from .env
+    security.py     # JWT helpers
+  db/
+    base.py         # SQLAlchemy declarative base
+    session.py      # async session factory
+  models/           # SQLAlchemy ORM models
+  schemas/          # Pydantic request/response schemas
+  tasks/            # Celery task definitions
+  main.py
+docker-compose.yml
+Dockerfile
+alembic/
+  env.py
+  versions/</code></pre>
+
+  <h2>The Docker Compose Setup</h2>
+  <pre><code>version: "3.9"
+services:
+  api:
+    build: .
+    ports: ["8000:8000"]
+    env_file: .env
+    depends_on: [db, redis]
+    volumes: ["./app:/app/app"]
+    command: uvicorn app.main:app --host 0.0.0.0 --reload
+
+  worker:
+    build: .
+    env_file: .env
+    depends_on: [db, redis]
+    command: celery -A app.tasks.celery_app worker --loglevel=info
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    ports: ["5432:5432"]
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+
+volumes:
+  postgres_data:</code></pre>
+
+  <h2>Async SQLAlchemy 2.0 Session</h2>
+  <pre><code># db/session.py
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker
+from app.core.config import settings
+
+engine = create_async_engine(settings.DATABASE_URL, echo=False)
+AsyncSessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+
+async def get_db():
+    async with AsyncSessionLocal() as session:
+        yield session</code></pre>
+
+  <h2>JWT Authentication</h2>
+  <pre><code># core/security.py
+from datetime import datetime, timedelta
+from jose import jwt, JWTError
+from passlib.context import CryptContext
+
+pwd_context = CryptContext(schemes=["bcrypt"])
+SECRET_KEY = settings.SECRET_KEY
+ALGORITHM = "HS256"
+
+def create_access_token(subject: str, expires_delta: timedelta = timedelta(hours=24)):
+    expire = datetime.utcnow() + expires_delta
+    return jwt.encode({"sub": subject, "exp": expire}, SECRET_KEY, algorithm=ALGORITHM)
+
+def verify_password(plain: str, hashed: str) -> bool:
+    return pwd_context.verify(plain, hashed)
+
+def hash_password(password: str) -> str:
+    return pwd_context.hash(password)</code></pre>
+
+  <h2>A Real Route Example</h2>
+  <pre><code># api/routes/leads.py
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
+from app.db.session import get_db
+from app.api.deps import get_current_user
+from app.models.lead import Lead
+from app.schemas.lead import LeadCreate, LeadOut
+from app.tasks.crm import process_lead_task
+
+router = APIRouter(prefix="/leads", tags=["leads"])
+
+@router.post("/", response_model=LeadOut, status_code=201)
+async def create_lead(
+    payload: LeadCreate,
+    db: AsyncSession = Depends(get_db),
+    current_user = Depends(get_current_user)
+):
+    lead = Lead(**payload.model_dump(), created_by=current_user.id)
+    db.add(lead)
+    await db.commit()
+    await db.refresh(lead)
+    # Queue async processing (OpenAI classification, CRM sync)
+    process_lead_task.delay(str(lead.id))
+    return lead</code></pre>
+
+  <h2>Celery Background Task</h2>
+  <pre><code># tasks/crm.py
+from celery import Celery
+from app.core.config import settings
+
+celery_app = Celery("worker", broker=settings.REDIS_URL, backend=settings.REDIS_URL)
+
+@celery_app.task(bind=True, max_retries=3)
+def process_lead_task(self, lead_id: str):
+    try:
+        # 1. Fetch lead from DB (use sync session here)
+        # 2. Call OpenAI to classify intent
+        # 3. POST to Close CRM or HubSpot
+        # 4. Send Slack notification
+        pass
+    except Exception as exc:
+        raise self.retry(exc=exc, countdown=30)</code></pre>
+
+  <h2>Alembic Migrations</h2>
+  <pre><code># Initialize
+alembic init alembic
+
+# Create a migration
+alembic revision --autogenerate -m "create leads table"
+
+# Apply
+alembic upgrade head</code></pre>
+
+  <div class="callout"><p><strong>Production tip:</strong> Run <code>alembic upgrade head</code> as an entrypoint script before starting uvicorn — this ensures migrations always run before the API starts, even on fresh deployments.</p></div>
+
+  <h2>The Dockerfile</h2>
+  <pre><code>FROM python:3.11-slim
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]</code></pre>
+
+  <p>This stack handles everything I need for automation backends — async DB operations, background task queuing, clean auth, and easy Docker deployment. I use it as the backend for n8n webhook receivers, AI agent APIs, and customer-facing portals.</p>
+  <p>Need a production-ready backend for your automation project? <a href="mailto:hamzaabialal@gmail.com" style="color:var(--accent);">Let's talk.</a></p>
+
+  <div class="related">
+    <h3>Related Posts</h3>
+    <div class="related-links">
+      <a href="/blog/django-rest-vs-fastapi.html">→ Django REST Framework vs FastAPI: Which Should You Choose in 2025?</a>
+      <a href="/blog/openai-n8n-crm-automation.html">→ OpenAI + n8n: Building AI-Powered CRM Automation</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Hamza Bilal · AI Automation &amp; Backend Engineer</p>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+    <a href="/">Portfolio</a>
+    <a href="/services.html">Services</a>
+    <a href="/blogs.html">Blog</a>
+    <a href="mailto:hamzaabialal@gmail.com">Email</a>
+  </div>
+</footer>
+</body>
+</html>

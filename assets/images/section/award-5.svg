@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 680" width="480" height="680">
+  <defs>
+    <pattern id="d" patternUnits="userSpaceOnUse" width="28" height="28" patternTransform="rotate(-45)">
+      <rect width="14" height="28" fill="rgba(255,255,255,0.08)"/>
+    </pattern>
+    <path id="sc5" d="M 440,604 a 38,38 0 1 1 76 0 38,38 0 1 1 -76 0"/>
+  </defs>
+  <rect width="480" height="680" fill="#12C196"/>
+  <rect width="480" height="680" fill="url(#d)"/>
+  <rect x="14" y="14" width="452" height="652" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+  <text x="34" y="56" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="rgba(255,255,255,0.65)" letter-spacing="3">ISSUED BY</text>
+  <text x="34" y="80" font-family="Arial,sans-serif" font-size="19" font-weight="900" fill="white" letter-spacing="2.5">UPWORK</text>
+  <text x="446" y="56" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="rgba(255,255,255,0.65)" letter-spacing="3" text-anchor="end">CERTIFICATE</text>
+  <text x="446" y="80" font-family="Arial,sans-serif" font-size="19" font-weight="900" fill="white" letter-spacing="2.5" text-anchor="end">2024</text>
+  <text x="240" y="306" font-family="Arial,sans-serif" font-size="118" font-weight="900" fill="white" text-anchor="middle">RISING</text>
+  <text x="240" y="410" font-family="Arial,sans-serif" font-size="118" font-weight="900" fill="white" text-anchor="middle">TALENT</text>
+  <text x="240" y="454" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="rgba(255,255,255,0.85)" text-anchor="middle" letter-spacing="6">EMERGING TOP PERFORMER</text>
+  <text x="34" y="555" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="rgba(255,255,255,0.6)" letter-spacing="3">2024 · ACHIEVEMENT</text>
+  <text x="34" y="588" font-family="Arial,sans-serif" font-size="22" font-weight="900" fill="white">Emerging Top Performer</text>
+  <text x="34" y="616" font-family="Arial,sans-serif" font-size="13" fill="rgba(255,255,255,0.6)">Awarded to standout new talent gaining</text>
+  <text x="34" y="636" font-family="Arial,sans-serif" font-size="13" fill="rgba(255,255,255,0.6)">momentum on the platform</text>
+  <circle cx="440" cy="604" r="42" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+  <circle cx="440" cy="604" r="34" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+  <text font-family="Arial,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.45)" letter-spacing="1.8">
+    <textPath href="#sc5" startOffset="2%">OFFICIAL · CERTIFICATE · OF · EXCELLENCE · </textPath>
+  </text>
+  <text x="440" y="609" font-family="Arial,sans-serif" font-size="20" font-weight="900" fill="rgba(255,255,255,0.55)" text-anchor="middle">A</text>
+</svg>

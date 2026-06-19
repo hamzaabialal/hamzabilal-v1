@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>How to Self-Host n8n on AWS EC2 (2025) — Hamza Bilal</title>
+<meta name="description" content="Complete walkthrough: EC2 setup, Docker Compose, Nginx reverse proxy, SSL, and production-hardening for a self-hosted n8n instance that runs 24/7 for under $10/month."/>
+<meta name="author" content="Hamza Bilal"/>
+<link rel="canonical" href="https://hamzabilal.dev/blog/self-host-n8n-aws-ec2.html"/>
+<link rel="icon" href="/favicon.ico"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg:#0a0a0a; --bg2:#111; --bg3:#181818; --border:rgba(255,255,255,0.08); --text:#fff; --text2:rgba(255,255,255,0.72); --text3:rgba(255,255,255,0.48); --accent:#a8f56a; --radius:16px; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; line-height:1.7; }
+  nav { position:sticky; top:0; z-index:100; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 5%; display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .nav-logo { font-size:1.1rem; font-weight:700; color:var(--text); text-decoration:none; letter-spacing:-0.02em; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { color:var(--text3); text-decoration:none; font-size:0.9rem; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-cta { background:var(--accent); color:#000; padding:0.5rem 1.25rem; border-radius:100px; text-decoration:none; font-size:0.85rem; font-weight:600; }
+  .post-hero { padding:4rem 5% 3rem; max-width:800px; margin:0 auto; }
+  .back-link { display:inline-flex; align-items:center; gap:0.4rem; color:var(--text3); text-decoration:none; font-size:0.85rem; margin-bottom:2rem; transition:color 0.2s; }
+  .back-link:hover { color:var(--accent); }
+  .post-category { display:inline-block; background:rgba(168,245,106,0.1); color:var(--accent); border:1px solid rgba(168,245,106,0.2); padding:0.3rem 0.9rem; border-radius:100px; font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:1.25rem; }
+  .post-hero h1 { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; letter-spacing:-0.03em; line-height:1.2; margin-bottom:1rem; }
+  .post-meta { display:flex; gap:1.5rem; color:var(--text3); font-size:0.85rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .divider { width:100%; height:1px; background:var(--border); margin:2rem 0; }
+  .post-body { max-width:800px; margin:0 auto; padding:0 5% 6rem; }
+  .post-body p { color:var(--text2); margin-bottom:1.25rem; font-size:1rem; }
+  .post-body h2 { font-size:1.4rem; font-weight:700; letter-spacing:-0.02em; margin:2.5rem 0 1rem; color:var(--text); }
+  .post-body h3 { font-size:1.1rem; font-weight:700; margin:1.75rem 0 0.75rem; color:var(--text); }
+  .post-body ul, .post-body ol { color:var(--text2); padding-left:1.5rem; margin-bottom:1.25rem; }
+  .post-body li { margin-bottom:0.5rem; }
+  .post-body strong { color:var(--text); }
+  .post-body code { background:var(--bg3); color:var(--accent); padding:0.15rem 0.5rem; border-radius:6px; font-size:0.875rem; font-family:'Courier New',monospace; }
+  .post-body pre { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; overflow-x:auto; margin:1.5rem 0; }
+  .post-body pre code { background:none; padding:0; color:var(--text2); font-size:0.875rem; line-height:1.7; }
+  .callout { background:rgba(168,245,106,0.06); border:1px solid rgba(168,245,106,0.2); border-radius:var(--radius); padding:1.25rem 1.5rem; margin:1.75rem 0; }
+  .callout p { color:var(--text2); margin:0; }
+  .callout strong { color:var(--accent); }
+  .step-num { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; background:var(--accent); color:#000; border-radius:50%; font-size:0.8rem; font-weight:800; margin-right:0.5rem; flex-shrink:0; }
+  .step { display:flex; align-items:flex-start; gap:0.75rem; margin-bottom:2rem; }
+  .step-content { flex:1; }
+  .tag-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.5rem 0; }
+  .tag { font-size:0.78rem; color:var(--text3); background:rgba(255,255,255,0.05); padding:0.25rem 0.7rem; border-radius:100px; border:1px solid var(--border); }
+  .related { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:2rem; margin-top:3rem; }
+  .related h3 { font-size:0.8rem; font-weight:700; margin-bottom:1rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; }
+  .related-links { display:flex; flex-direction:column; gap:0.75rem; }
+  .related-links a { color:var(--text2); text-decoration:none; font-size:0.9rem; font-weight:600; transition:color 0.2s; }
+  .related-links a:hover { color:var(--accent); }
+  footer { border-top:1px solid var(--border); padding:2rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  footer p { font-size:0.85rem; color:var(--text3); }
+  footer a { color:var(--text2); text-decoration:none; font-size:0.85rem; }
+  footer a:hover { color:var(--accent); }
+  @media(max-width:600px) { .nav-links { display:none; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Hamza<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/blogs.html">Blog</a></li>
+    <li><a href="/#work">Work</a></li>
+  </ul>
+  <a href="mailto:hamzaabialal@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<div class="post-hero">
+  <a href="/blogs.html" class="back-link">← Back to Blog</a>
+  <div class="post-category">n8n · AWS · DevOps</div>
+  <h1>How to Self-Host n8n on AWS EC2 (Step-by-Step 2025 Guide)</h1>
+  <div class="post-meta">
+    <span>✍️ Hamza Bilal</span>
+    <span>📅 February 2025</span>
+    <span>⏱ 12 min read</span>
+  </div>
+  <div class="tag-row">
+    <span class="tag">n8n</span><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">DevOps</span><span class="tag">Self-Hosted</span>
+  </div>
+  <div class="divider"></div>
+</div>
+
+<div class="post-body">
+  <p>I've set up self-hosted n8n on AWS EC2 for multiple clients. This guide covers the exact setup I use in production — Docker Compose, Nginx with SSL, PostgreSQL persistence, and auto-restart on reboot. Total cost: <strong>under $10/month on a t3.small instance.</strong></p>
+
+  <div class="callout"><p><strong>Prerequisites:</strong> AWS account, a domain name (or subdomain), basic terminal comfort. This guide assumes Ubuntu 22.04 LTS.</p></div>
+
+  <h2>Step 1 — Launch EC2 Instance</h2>
+  <ol>
+    <li>Go to EC2 → Launch Instance</li>
+    <li>Select <strong>Ubuntu Server 22.04 LTS</strong></li>
+    <li>Choose <strong>t3.small</strong> (2 vCPU, 2 GB RAM) — minimum for stable n8n</li>
+    <li>Storage: set to <strong>20 GB gp3</strong></li>
+    <li>Security Group: open ports <code>22</code> (SSH), <code>80</code> (HTTP), <code>443</code> (HTTPS)</li>
+    <li>Create a key pair and download the <code>.pem</code> file</li>
+  </ol>
+
+  <p>SSH into your instance:</p>
+  <pre><code>ssh -i your-key.pem ubuntu@YOUR_EC2_PUBLIC_IP</code></pre>
+
+  <h2>Step 2 — Install Docker &amp; Docker Compose</h2>
+  <pre><code>sudo apt update && sudo apt upgrade -y
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker ubuntu
+newgrp docker
+sudo apt install docker-compose-plugin -y
+docker --version  # confirm it works</code></pre>
+
+  <h2>Step 3 — Create the Docker Compose File</h2>
+  <p>Create a working directory and the compose file:</p>
+  <pre><code>mkdir ~/n8n && cd ~/n8n
+nano docker-compose.yml</code></pre>
+
+  <p>Paste this — replace the values in angle brackets:</p>
+  <pre><code>version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: n8n
+      POSTGRES_PASSWORD: &lt;STRONG_PASSWORD&gt;
+      POSTGRES_DB: n8n
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=&lt;YOUR_DOMAIN&gt;
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - WEBHOOK_URL=https://&lt;YOUR_DOMAIN&gt;/
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=&lt;STRONG_PASSWORD&gt;
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=&lt;ADMIN_PASSWORD&gt;
+      - EXECUTIONS_PROCESS=main
+      - GENERIC_TIMEZONE=UTC
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
+  n8n_data:</code></pre>
+
+  <h2>Step 4 — Install Nginx &amp; Certbot</h2>
+  <pre><code>sudo apt install nginx certbot python3-certbot-nginx -y</code></pre>
+
+  <p>Create an Nginx config for your domain:</p>
+  <pre><code>sudo nano /etc/nginx/sites-available/n8n</code></pre>
+
+  <pre><code>server {
+    listen 80;
+    server_name &lt;YOUR_DOMAIN&gt;;
+
+    location / {
+        proxy_pass http://localhost:5678;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_read_timeout 86400;
+    }
+}</code></pre>
+
+  <pre><code>sudo ln -s /etc/nginx/sites-available/n8n /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx</code></pre>
+
+  <h2>Step 5 — SSL with Let's Encrypt</h2>
+  <p>Point your domain's A record to the EC2 public IP first, then:</p>
+  <pre><code>sudo certbot --nginx -d &lt;YOUR_DOMAIN&gt;</code></pre>
+
+  <p>Certbot will automatically update your Nginx config to redirect HTTP to HTTPS and add SSL certificates. Auto-renewal is configured by default.</p>
+
+  <h2>Step 6 — Start n8n</h2>
+  <pre><code>cd ~/n8n
+docker compose up -d
+docker compose logs -f  # watch for errors</code></pre>
+
+  <p>Visit <code>https://YOUR_DOMAIN</code> — you should see the n8n login screen. Log in with the basic auth credentials you set in the compose file.</p>
+
+  <h2>Step 7 — Production Hardening</h2>
+  <h3>Auto-restart on reboot</h3>
+  <p>The <code>restart: always</code> in the compose file handles this for Docker. But also enable Docker to start on boot:</p>
+  <pre><code>sudo systemctl enable docker</code></pre>
+
+  <h3>Monitoring with a simple health check</h3>
+  <p>Add a cron job that pings n8n and alerts you via email if it's down:</p>
+  <pre><code>crontab -e
+# Add this line:
+*/5 * * * * curl -sf https://&lt;YOUR_DOMAIN&gt;/healthz || echo "n8n DOWN" | mail -s "n8n Alert" you@email.com</code></pre>
+
+  <h3>Backup PostgreSQL daily</h3>
+  <pre><code>crontab -e
+# Add:
+0 2 * * * docker exec n8n-postgres-1 pg_dump -U n8n n8n | gzip > ~/backups/n8n-$(date +\%Y\%m\%d).sql.gz</code></pre>
+
+  <div class="callout"><p><strong>Cost breakdown:</strong> t3.small = ~$0.0208/hr × 730 hrs = <strong>~$15/month</strong>. Use a t3.micro if you have low workflow volume — drops to <strong>~$7.50/month</strong> (or free tier eligible for new accounts).</p></div>
+
+  <h2>Common Issues I've Hit</h2>
+  <ul>
+    <li><strong>Webhooks not triggering:</strong> Make sure <code>WEBHOOK_URL</code> in docker-compose matches your actual domain with <code>https://</code></li>
+    <li><strong>502 Bad Gateway:</strong> n8n container hasn't started yet — wait 30 seconds after <code>docker compose up</code></li>
+    <li><strong>Execution timeout:</strong> Add <code>EXECUTIONS_TIMEOUT=3600</code> to env vars for long-running workflows</li>
+    <li><strong>Database connection errors:</strong> Run <code>docker compose restart</code> — usually a startup timing issue between postgres and n8n containers</li>
+  </ul>
+
+  <p>That's the full setup. I've run this stack in production for 6+ months without downtime. If you want me to set this up for you or migrate your existing Zapier workflows to n8n, <a href="mailto:hamzaabialal@gmail.com" style="color:var(--accent);">get in touch</a>.</p>
+
+  <div class="related">
+    <h3>Related Posts</h3>
+    <div class="related-links">
+      <a href="/blog/n8n-vs-zapier-vs-makecom-2025.html">→ n8n vs Zapier vs Make.com: The Complete 2025 Comparison</a>
+      <a href="/blog/migrate-zapier-to-n8n.html">→ How I Migrated 47 Zapier Zaps to Self-Hosted n8n (and Saved $800/month)</a>
+      <a href="/blog/openai-n8n-crm-automation.html">→ OpenAI + n8n: Building AI-Powered CRM Automation</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Hamza Bilal · AI Automation &amp; Backend Engineer</p>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+    <a href="/">Portfolio</a>
+    <a href="/services.html">Services</a>
+    <a href="/blogs.html">Blog</a>
+    <a href="mailto:hamzaabialal@gmail.com">Email</a>
+  </div>
+</footer>
+</body>
+</html>

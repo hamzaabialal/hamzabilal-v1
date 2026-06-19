@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Zapier Outreach with Close.io + OpenAI: Auto-Reply by Tone — Hamza Bilal</title>
+<meta name="description" content="How I built an 84-step Zapier workflow that reads incoming replies, uses OpenAI to classify tone, and sends the right personalised follow-up automatically."/>
+<meta name="author" content="Hamza Bilal"/>
+<link rel="canonical" href="https://hamzabilal.dev/blog/zapier-closeio-openai-auto-reply.html"/>
+<link rel="icon" href="/favicon.ico"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg:#0a0a0a; --bg2:#111; --bg3:#181818; --border:rgba(255,255,255,0.08); --text:#fff; --text2:rgba(255,255,255,0.72); --text3:rgba(255,255,255,0.48); --accent:#a8f56a; --radius:16px; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; line-height:1.7; }
+  nav { position:sticky; top:0; z-index:100; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 5%; display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .nav-logo { font-size:1.1rem; font-weight:700; color:var(--text); text-decoration:none; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { color:var(--text3); text-decoration:none; font-size:0.9rem; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-cta { background:var(--accent); color:#000; padding:0.5rem 1.25rem; border-radius:100px; text-decoration:none; font-size:0.85rem; font-weight:600; }
+  .post-hero { padding:4rem 5% 3rem; max-width:800px; margin:0 auto; }
+  .back-link { display:inline-flex; align-items:center; gap:0.4rem; color:var(--text3); text-decoration:none; font-size:0.85rem; margin-bottom:2rem; }
+  .back-link:hover { color:var(--accent); }
+  .post-category { display:inline-block; background:rgba(168,245,106,0.1); color:var(--accent); border:1px solid rgba(168,245,106,0.2); padding:0.3rem 0.9rem; border-radius:100px; font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:1.25rem; }
+  .post-hero h1 { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; letter-spacing:-0.03em; line-height:1.2; margin-bottom:1rem; }
+  .post-meta { display:flex; gap:1.5rem; color:var(--text3); font-size:0.85rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .divider { width:100%; height:1px; background:var(--border); margin:2rem 0; }
+  .post-body { max-width:800px; margin:0 auto; padding:0 5% 6rem; }
+  .post-body p { color:var(--text2); margin-bottom:1.25rem; }
+  .post-body h2 { font-size:1.4rem; font-weight:700; letter-spacing:-0.02em; margin:2.5rem 0 1rem; }
+  .post-body h3 { font-size:1.1rem; font-weight:700; margin:1.75rem 0 0.75rem; }
+  .post-body ul, .post-body ol { color:var(--text2); padding-left:1.5rem; margin-bottom:1.25rem; }
+  .post-body li { margin-bottom:0.5rem; }
+  .post-body strong { color:var(--text); }
+  .post-body code { background:var(--bg3); color:var(--accent); padding:0.15rem 0.5rem; border-radius:6px; font-size:0.875rem; font-family:'Courier New',monospace; }
+  .post-body pre { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; overflow-x:auto; margin:1.5rem 0; }
+  .post-body pre code { background:none; padding:0; color:var(--text2); font-size:0.875rem; line-height:1.7; }
+  .callout { background:rgba(168,245,106,0.06); border:1px solid rgba(168,245,106,0.2); border-radius:var(--radius); padding:1.25rem 1.5rem; margin:1.75rem 0; }
+  .callout p { color:var(--text2); margin:0; }
+  .callout strong { color:var(--accent); }
+  .tag-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.5rem 0; }
+  .tag { font-size:0.78rem; color:var(--text3); background:rgba(255,255,255,0.05); padding:0.25rem 0.7rem; border-radius:100px; border:1px solid var(--border); }
+  .related { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:2rem; margin-top:3rem; }
+  .related h3 { font-size:0.8rem; font-weight:700; margin-bottom:1rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; }
+  .related-links { display:flex; flex-direction:column; gap:0.75rem; }
+  .related-links a { color:var(--text2); text-decoration:none; font-size:0.9rem; font-weight:600; }
+  .related-links a:hover { color:var(--accent); }
+  footer { border-top:1px solid var(--border); padding:2rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  footer p { font-size:0.85rem; color:var(--text3); }
+  footer a { color:var(--text2); text-decoration:none; font-size:0.85rem; }
+  footer a:hover { color:var(--accent); }
+  @media(max-width:600px) { .nav-links { display:none; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Hamza<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/blogs.html">Blog</a></li>
+    <li><a href="/#work">Work</a></li>
+  </ul>
+  <a href="mailto:hamzaabialal@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<div class="post-hero">
+  <a href="/blogs.html" class="back-link">← Back to Blog</a>
+  <div class="post-category">Zapier · Close.io · OpenAI</div>
+  <h1>Zapier Outreach with Close.io + OpenAI: Auto-Reply Based on Message Tone</h1>
+  <div class="post-meta">
+    <span>✍️ Hamza Bilal</span>
+    <span>📅 December 2024</span>
+    <span>⏱ 7 min read</span>
+  </div>
+  <div class="tag-row">
+    <span class="tag">Zapier</span><span class="tag">Close.io</span><span class="tag">OpenAI</span><span class="tag">Outreach</span>
+  </div>
+  <div class="divider"></div>
+</div>
+
+<div class="post-body">
+  <p>This is one of the most complex Zapier workflows I've built — 84 steps, fully automated outreach that reads every inbound reply, classifies the tone using OpenAI, and sends the right personalised follow-up without any human involvement.</p>
+  <p>The client was running cold outreach at scale in Close.io CRM. Their sales reps were spending 3 hours a day manually reading replies and crafting responses. This workflow eliminated all of that manual work.</p>
+
+  <h2>The Problem</h2>
+  <p>When you run outreach at scale, replies fall into a few buckets:</p>
+  <ul>
+    <li><strong>Interested</strong> — "Yes, tell me more" / "Can we book a call?"</li>
+    <li><strong>Objection</strong> — "Too expensive" / "We're using X already" / "Not the right time"</li>
+    <li><strong>Not now</strong> — "Reach back in Q2" / "We're in a budget freeze"</li>
+    <li><strong>Unsubscribe</strong> — "Remove me from your list"</li>
+    <li><strong>Out of office</strong> — Auto-replies that shouldn't trigger a response</li>
+  </ul>
+  <p>Each category needs a completely different response. A generic reply to an objection kills the deal. A delayed response to "Can we book a call?" loses it.</p>
+
+  <h2>The Workflow Architecture</h2>
+  <p>The Zap triggers on <strong>New Activity in Close.io</strong> (specifically: email received on an existing lead). The flow:</p>
+  <ol>
+    <li><strong>Trigger</strong>: New inbound email activity in Close.io</li>
+    <li><strong>Filter</strong>: Skip if it's an outbound email (direction = "outbound")</li>
+    <li><strong>Filter</strong>: Skip if subject contains "Out of Office" or "Auto-Reply"</li>
+    <li><strong>OpenAI</strong>: Classify reply tone → returns category + confidence + summary</li>
+    <li><strong>Filter</strong>: Skip if unsubscribe → run unsubscribe handler instead</li>
+    <li><strong>Paths</strong>: Branch on the classification result</li>
+    <li>Per branch: OpenAI drafts personalised reply → update Close.io lead status → send email via Close.io</li>
+  </ol>
+
+  <h2>The OpenAI Tone Classification Prompt</h2>
+  <pre><code>Classify this sales email reply. Return ONLY valid JSON.
+
+{
+  "category": "interested" | "objection" | "not_now" | "unsubscribe" | "out_of_office" | "other",
+  "objection_type": "price" | "competitor" | "timing" | "authority" | null,
+  "confidence": 0.0-1.0,
+  "urgency": "high" | "medium" | "low",
+  "one_line_summary": "string"
+}
+
+Email reply:
+{{email_body}}</code></pre>
+
+  <h2>The Reply Templates (OpenAI Drafted)</h2>
+  <h3>Interested branch</h3>
+  <pre><code>The prospect just replied to your outreach and said:
+"{{email_body}}"
+
+They work at {{company_name}} as {{prospect_title}}.
+Our product is an AI automation platform.
+
+Write a reply (max 3 sentences) that:
+1. Confirms you saw their interest
+2. Proposes a specific 20-minute call time (use "Tuesday or Wednesday this week")
+3. Includes a Calendly link placeholder: [CALENDAR_LINK]
+
+No fluff. Sound like a real person, not a template.</code></pre>
+
+  <h3>Objection branch — price</h3>
+  <pre><code>The prospect objected to price: "{{email_body}}"
+
+Write a 2-sentence reply that:
+1. Acknowledges the concern without being defensive
+2. Reframes the ROI (automation saves X hours/week)
+
+Don't discount. Don't apologize. Keep it confident.</code></pre>
+
+  <div class="callout"><p><strong>Why 84 steps?</strong> Each of the 5 reply categories has its own sub-flow: OpenAI draft → format message → update lead status in Close → update lead custom fields → send email → create follow-up task → log activity. That's ~15 steps per branch × 5 branches + the shared upstream logic = 84 total.</p></div>
+
+  <h2>The Results</h2>
+  <p>After 60 days running this workflow for the client:</p>
+  <ul>
+    <li><strong>Reply handling time:</strong> 3 hours/day → 0 minutes (fully automated)</li>
+    <li><strong>Response speed:</strong> Average 4.2 hours → under 3 minutes</li>
+    <li><strong>Booking rate:</strong> Increased 31% (faster responses = more booked calls)</li>
+    <li><strong>Unsubscribe mishandling:</strong> 0 (previously 2-3 per week)</li>
+  </ul>
+
+  <h2>Key Lessons from Building This</h2>
+  <ul>
+    <li><strong>Always filter out-of-office replies first.</strong> Without this, the system replies to auto-responders and triggers infinite loops.</li>
+    <li><strong>Low-confidence classifications need a human fallback.</strong> If OpenAI returns confidence below 0.7, I flag the lead for manual review instead of auto-responding.</li>
+    <li><strong>Test with real email samples.</strong> Generic test data produces unreliable classification. I used 50 real past replies to tune the prompts.</li>
+    <li><strong>Zapier's execution timeout is 2 minutes.</strong> OpenAI calls sometimes take 15–30 seconds, so keep the rest of the flow lean.</li>
+  </ul>
+
+  <p>This kind of workflow is what I build for outreach-heavy sales teams. If you're running outreach at scale and drowning in manual reply handling, <a href="mailto:hamzaabialal@gmail.com" style="color:var(--accent);">let's talk.</a></p>
+
+  <div class="related">
+    <h3>Related Posts</h3>
+    <div class="related-links">
+      <a href="/blog/n8n-vs-zapier-vs-makecom-2025.html">→ n8n vs Zapier vs Make.com: The Complete 2025 Comparison</a>
+      <a href="/blog/openai-n8n-crm-automation.html">→ OpenAI + n8n: Building AI-Powered CRM Automation</a>
+      <a href="/blog/migrate-zapier-to-n8n.html">→ How I Migrated 47 Zapier Zaps to Self-Hosted n8n (and Saved $800/month)</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Hamza Bilal · AI Automation &amp; Backend Engineer</p>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+    <a href="/">Portfolio</a>
+    <a href="/services.html">Services</a>
+    <a href="/blogs.html">Blog</a>
+    <a href="mailto:hamzaabialal@gmail.com">Email</a>
+  </div>
+</footer>
+</body>
+</html>

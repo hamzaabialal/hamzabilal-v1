@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Blog — Hamza Bilal | AI Automation, n8n, Zapier & Backend Engineering</title>
+<meta name="description" content="Practical guides on n8n automation, Zapier workflows, Make.com scenarios, OpenAI integrations, Django/FastAPI backend development, and AI agent engineering by Hamza Bilal."/>
+<meta name="keywords" content="n8n tutorial, Zapier automation guide, Make.com automation, OpenAI integration, AI automation blog, Django REST API, FastAPI tutorial, Hamza Bilal blog"/>
+<meta name="author" content="Hamza Bilal"/>
+<link rel="canonical" href="https://hamzabilal.dev/blogs.html"/>
+<meta property="og:title" content="Blog — Hamza Bilal | AI Automation & Backend Engineering"/>
+<meta property="og:description" content="Practical guides on n8n, Zapier, Make.com, OpenAI, and backend engineering."/>
+<meta property="og:url" content="https://hamzabilal.dev/blogs.html"/>
+<meta property="og:type" content="blog"/>
+<link rel="icon" href="/favicon.ico"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "url": "https://hamzabilal.dev/blogs.html",
+  "name": "Hamza Bilal — AI Automation & Backend Engineering Blog",
+  "description": "Practical guides on n8n, Zapier, Make.com, OpenAI, Django, and FastAPI.",
+  "author": {
+    "@type": "Person",
+    "name": "Hamza Bilal",
+    "url": "https://hamzabilal.dev",
+    "jobTitle": "AI Automation Engineer & Full Stack Developer"
+  },
+  "blogPost": [
+    {"@type":"BlogPosting","headline":"n8n vs Zapier vs Make.com: The Complete 2025 Comparison","datePublished":"2025-03-01","author":{"@type":"Person","name":"Hamza Bilal"}},
+    {"@type":"BlogPosting","headline":"How to Build a Self-Hosted n8n Stack on AWS EC2","datePublished":"2025-02-15","author":{"@type":"Person","name":"Hamza Bilal"}},
+    {"@type":"BlogPosting","headline":"OpenAI + n8n: Building AI-Powered CRM Automation","datePublished":"2025-02-01","author":{"@type":"Person","name":"Hamza Bilal"}},
+    {"@type":"BlogPosting","headline":"Make.com Airtable Integration: The Developer's Guide","datePublished":"2025-01-20","author":{"@type":"Person","name":"Hamza Bilal"}},
+    {"@type":"BlogPosting","headline":"Building Production REST APIs with FastAPI & PostgreSQL","datePublished":"2025-01-05","author":{"@type":"Person","name":"Hamza Bilal"}},
+    {"@type":"BlogPosting","headline":"Zapier vs Make.com for Outreach Automation: What I Learned Building 30+ Workflows","datePublished":"2024-12-15","author":{"@type":"Person","name":"Hamza Bilal"}}
+  ]
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #181818;
+    --border: rgba(255,255,255,0.08);
+    --text: #ffffff;
+    --text2: rgba(255,255,255,0.72);
+    --text3: rgba(255,255,255,0.48);
+    --accent: #a8f56a;
+    --radius: 16px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(10,10,10,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .nav-logo { font-size: 1.1rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--text3); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-cta { background: var(--accent); color: #000; padding: 0.5rem 1.25rem; border-radius: 100px; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: opacity 0.2s; }
+  .nav-cta:hover { opacity: 0.85; }
+
+  .hero { padding: 5rem 5% 4rem; max-width: 900px; margin: 0 auto; text-align: center; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(168,245,106,0.1); color: var(--accent); border: 1px solid rgba(168,245,106,0.2); padding: 0.35rem 1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1rem; }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--text3); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+
+  .filter-bar { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; padding: 0 5% 3rem; }
+  .filter-btn { background: var(--bg2); border: 1px solid var(--border); color: var(--text3); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.82rem; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+  .filter-btn:hover, .filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+
+  .blog-grid { max-width: 1200px; margin: 0 auto; padding: 0 5% 6rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+  .blog-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.3s, transform 0.2s; display: flex; flex-direction: column; }
+  .blog-card:hover { border-color: rgba(168,245,106,0.3); transform: translateY(-3px); }
+  .blog-card.featured { grid-column: span 2; }
+
+  .card-thumb { height: 180px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; overflow: hidden; }
+  .blog-card.featured .card-thumb { height: 220px; }
+  .card-thumb-bg { position: absolute; inset: 0; opacity: 0.06; background: radial-gradient(circle at 30% 50%, var(--accent), transparent 70%); }
+  .card-thumb-icon { font-size: 2.5rem; z-index: 1; }
+
+  .card-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+  .card-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .card-category { background: rgba(168,245,106,0.1); color: var(--accent); padding: 0.2rem 0.65rem; border-radius: 100px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .card-date { font-size: 0.78rem; color: var(--text3); }
+  .card-read { font-size: 0.78rem; color: var(--text3); margin-left: auto; }
+
+  .card-title { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; margin-bottom: 0.75rem; }
+  .blog-card.featured .card-title { font-size: 1.3rem; }
+  .card-excerpt { font-size: 0.875rem; color: var(--text3); line-height: 1.65; flex: 1; margin-bottom: 1.25rem; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .card-tag { font-size: 0.73rem; color: var(--text3); background: rgba(255,255,255,0.05); padding: 0.2rem 0.6rem; border-radius: 100px; border: 1px solid var(--border); }
+  .card-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent); font-size: 0.85rem; font-weight: 600; text-decoration: none; margin-top: auto; transition: gap 0.2s; }
+  .card-link:hover { gap: 0.65rem; }
+
+  .newsletter { max-width: 600px; margin: 0 auto 6rem; padding: 3rem; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); text-align: center; }
+  .newsletter h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .newsletter p { color: var(--text3); font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .newsletter-form { display: flex; gap: 0.75rem; max-width: 420px; margin: 0 auto; }
+  .newsletter-form input { flex: 1; background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 0.7rem 1rem; border-radius: 100px; font-size: 0.9rem; font-family: inherit; outline: none; }
+  .newsletter-form input:focus { border-color: rgba(168,245,106,0.4); }
+  .newsletter-form button { background: var(--accent); color: #000; padding: 0.7rem 1.5rem; border-radius: 100px; border: none; font-weight: 700; font-size: 0.9rem; cursor: pointer; white-space: nowrap; font-family: inherit; }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  footer p { font-size: 0.85rem; color: var(--text3); }
+  footer a { color: var(--text2); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .blog-grid { grid-template-columns: repeat(2,1fr); }
+    .blog-card.featured { grid-column: span 2; }
+  }
+  @media (max-width: 600px) {
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-card.featured { grid-column: span 1; }
+    .nav-links { display: none; }
+    .newsletter-form { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Hamza<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/blogs.html" class="active">Blog</a></li>
+    <li><a href="/#work">Work</a></li>
+  </ul>
+  <a href="mailto:hamzaabialal@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">✍️ Automation insights</div>
+  <h1>Practical Guides on<br/><span>AI Automation</span> & Backend Dev</h1>
+  <p>Deep-dives into n8n, Zapier, Make.com, OpenAI integrations, Django/FastAPI, and real-world automation patterns — from someone who ships these daily.</p>
+</section>
+
+<div class="filter-bar">
+  <button class="filter-btn active">All</button>
+  <button class="filter-btn">n8n</button>
+  <button class="filter-btn">Zapier</button>
+  <button class="filter-btn">Make.com</button>
+  <button class="filter-btn">OpenAI / AI</button>
+  <button class="filter-btn">Backend Dev</button>
+</div>
+
+<div class="blog-grid">
+
+  <!-- POST 1 — Featured -->
+  <article class="blog-card featured" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="card-thumb">
+      <div class="card-thumb-bg"></div>
+      <div class="card-thumb-icon">⚡</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">n8n</span>
+        <span class="card-date">Mar 2025</span>
+        <span class="card-read">8 min read</span>
+      </div>
+      <h2 class="card-title" itemprop="headline">n8n vs Zapier vs Make.com: The Complete 2025 Comparison for Businesses</h2>
+      <p class="card-excerpt" itemprop="description">After building 30+ automation workflows across all three platforms for clients in USA, UK, Germany, and Australia — here's my honest take on when to use each one, total cost of ownership, and which wins for CRM automation, AI integration, and complex multi-branch logic.</p>
+      <div class="card-tags">
+        <span class="card-tag">n8n</span>
+        <span class="card-tag">Zapier</span>
+        <span class="card-tag">Make.com</span>
+        <span class="card-tag">Comparison</span>
+      </div>
+      <a href="/blog/n8n-vs-zapier-vs-makecom-2025.html" class="card-link">Read full guide →</a>
+    </div>
+  </article>
+
+  <!-- POST 2 -->
+  <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="card-thumb">
+      <div class="card-thumb-bg"></div>
+      <div class="card-thumb-icon">🖥️</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">n8n</span>
+        <span class="card-date">Feb 2025</span>
+        <span class="card-read">12 min read</span>
+      </div>
+      <h2 class="card-title" itemprop="headline">How to Self-Host n8n on AWS EC2 (Step-by-Step 2025 Guide)</h2>
+      <p class="card-excerpt" itemprop="description">Complete walkthrough: EC2 setup, Docker compose, Nginx reverse proxy, SSL, and production-hardening for a self-hosted n8n instance that runs 24/7 for under $10/month.</p>
+      <div class="card-tags">
+        <span class="card-tag">n8n</span>
+        <span class="card-tag">AWS</span>
+        <span class="card-tag">Docker</span>
+        <span class="card-tag">DevOps</span>
+      </div>
+      <a href="/blog/self-host-n8n-aws-ec2.html" class="card-link">Read guide →</a>
+    </div>
+  </article>
+
+  <!-- POST 3 -->
+  <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="card-thumb">
+      <div class="card-thumb-bg"></div>
+      <div class="card-thumb-icon">🤖</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">OpenAI / AI</span>
+        <span class="card-date">Feb 2025</span>
+        <span class="card-read">10 min read</span>
+      </div>
+      <h2 class="card-title" itemprop="headline">OpenAI + n8n: Building AI-Powered CRM Automation That Actually Works</h2>
+      <p class="card-excerpt" itemprop="description">How to wire OpenAI function calling into n8n to classify lead intent, auto-draft replies, and route deals — with real workflow screenshots and prompts you can copy.</p>
+      <div class="card-tags">
+        <span class="card-tag">OpenAI</span>
+        <span class="card-tag">n8n</span>
+        <span class="card-tag">CRM</span>
+        <span class="card-tag">AI Agents</span>
+      </div>
+      <a href="/blog/openai-n8n-crm-automation.html" class="card-link">Read guide →</a>
+    </div>
+  </article>
+
+  <!-- POST 4 -->
+  <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="card-thumb">
+      <div class="card-thumb-bg"></div>
+      <div class="card-thumb-icon">🟣</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Make.com</span>
+        <span class="card-date">Jan 2025</span>
+        <span class="card-read">9 min read</span>
+      </div>
+      <h2 class="card-title" itemprop="headline">Make.com + Airtable: The Developer's Integration Guide</h2>
+      <p class="card-excerpt" itemprop="description">How to use Airtable as a dynamic database inside Make.com scenarios — including filters, field mapping, multi-table relations, and handling the Airtable API rate limits gracefully.</p>
+      <div class="card-tags">
+        <span class="card-tag">Make.com</span>
+        <span class="card-tag">Airtable</span>
+        <span class="card-tag">Database</span>
+      </div>
+      <a href="/blog/makecom-airtable-integration.html" class="card-link">Read guide →</a>
+    </div>
+  </article>
+
+  <!-- POST 5 -->
+  <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="card-thumb">
+      <div class="card-thumb-bg"></div>
+      <div class="card-thumb-icon">🐍</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Backend Dev</span>
+        <span class="card-date">Jan 2025</span>
+        <span class="card-read">14 min read</span>
+      </div>
+      <h2 class="card-title" itemprop="headline">Production REST APIs with FastAPI + PostgreSQL + Docker (2025)</h2>
+      <p class="card-excerpt" itemprop="description">Async FastAPI app with SQLAlchemy 2.0, Alembic migrations, JWT auth, Celery background tasks, and Docker Compose — the exact stack I use for automation backend projects.</p>
+      <div class="card-tags">
+        <span class="card-tag">FastAPI</span>
+        <span class="card-tag">PostgreSQL</span>
+        <span class="card-tag">Docker</span>
+        <span class="card-tag">Python</span>
+      </div>
+      <a href="/blog/fastapi-postgresql-docker.html" class="card-link">Read guide →</a>
+    </div>
+  </article>
+
+  <!-- POST 6 -->
+  <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="card-thumb">
+      <div class="card-thumb-bg"></div>
+      <div class="card-thumb-icon">📧</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Zapier</span>
+        <span class="card-date">Dec 2024</span>
+        <span class="card-read">7 min read</span>
+      </div>
+      <h2 class="card-title" itemprop="headline">Zapier Outreach with Close.io + OpenAI: Auto-Reply Based on Message Tone</h2>
+      <p class="card-excerpt" itemprop="description">How I built an 84-step Zapier workflow that reads incoming replies, uses OpenAI to classify tone (interested / objection / not now), and sends the right personalised follow-up — automatically.</p>
+      <div class="card-tags">
+        <span class="card-tag">Zapier</span>
+        <span class="card-tag">Close.io</span>
+        <span class="card-tag">OpenAI</span>
+        <span class="card-tag">Outreach</span>
+      </div>
+      <a href="/blog/zapier-closeio-openai-auto-reply.html" class="card-link">Read guide →</a>
+    </div>
+  </article>
+
+  <!-- POST 7 -->
+  <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="card-thumb">
+      <div class="card-thumb-bg"></div>
+      <div class="card-thumb-icon">🔗</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">n8n</span>
+        <span class="card-date">Nov 2024</span>
+        <span class="card-read">11 min read</span>
+      </div>
+      <h2 class="card-title" itemprop="headline">How I Migrated 47 Zapier Zaps to Self-Hosted n8n (and Saved $800/month)</h2>
+      <p class="card-excerpt" itemprop="description">A real migration case study — mapping each Zap to n8n equivalents, handling edge cases, testing in parallel, and the monitoring setup that caught 3 failures before they hit production.</p>
+      <div class="card-tags">
+        <span class="card-tag">n8n</span>
+        <span class="card-tag">Zapier Migration</span>
+        <span class="card-tag">Cost Saving</span>
+      </div>
+      <a href="/blog/migrate-zapier-to-n8n.html" class="card-link">Read guide →</a>
+    </div>
+  </article>
+
+  <!-- POST 8 -->
+  <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="card-thumb">
+      <div class="card-thumb-bg"></div>
+      <div class="card-thumb-icon">🏗️</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Backend Dev</span>
+        <span class="card-date">Oct 2024</span>
+        <span class="card-read">8 min read</span>
+      </div>
+      <h2 class="card-title" itemprop="headline">Django REST Framework vs FastAPI: Which Should You Choose in 2025?</h2>
+      <p class="card-excerpt" itemprop="description">Based on building production APIs for automation-heavy products — a pragmatic comparison of DRF and FastAPI covering async support, ORM choices, deployment, and when each wins.</p>
+      <div class="card-tags">
+        <span class="card-tag">Django</span>
+        <span class="card-tag">FastAPI</span>
+        <span class="card-tag">Python</span>
+        <span class="card-tag">API</span>
+      </div>
+      <a href="/blog/django-rest-vs-fastapi.html" class="card-link">Read guide →</a>
+    </div>
+  </article>
+
+  <!-- POST 9 -->
+  <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="card-thumb">
+      <div class="card-thumb-bg"></div>
+      <div class="card-thumb-icon">🛠️</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">OpenAI / AI</span>
+        <span class="card-date">Sep 2024</span>
+        <span class="card-read">13 min read</span>
+      </div>
+      <h2 class="card-title" itemprop="headline">Building LangChain Agents with Tool Use, Memory & Multi-Step Reasoning</h2>
+      <p class="card-excerpt" itemprop="description">A practical guide to building autonomous LangChain agents that can search, calculate, and call external APIs — with real code, common pitfalls, and production deployment tips.</p>
+      <div class="card-tags">
+        <span class="card-tag">LangChain</span>
+        <span class="card-tag">OpenAI</span>
+        <span class="card-tag">AI Agents</span>
+        <span class="card-tag">Python</span>
+      </div>
+      <a href="/blog/langchain-agents-tool-use.html" class="card-link">Read guide →</a>
+    </div>
+  </article>
+
+</div>
+
+<!-- NEWSLETTER -->
+<div style="padding: 0 5%;">
+  <div class="newsletter">
+    <h3>Get new guides in your inbox</h3>
+    <p>Practical automation tutorials and backend engineering deep-dives — no fluff, shipped when ready.</p>
+    <form class="newsletter-form" onsubmit="event.preventDefault(); this.innerHTML='<p style=color:var(--accent);font-weight:700>Thanks! I\'ll be in touch.</p>'">
+      <input type="email" placeholder="your@email.com" required/>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Hamza Bilal · AI Automation &amp; Backend Engineer</p>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="/">Portfolio</a>
+    <a href="/services.html">Services</a>
+    <a href="/blogs.html">Blog</a>
+    <a href="mailto:hamzaabialal@gmail.com">Email</a>
+  </div>
+</footer>
+
+</body>
+</html>

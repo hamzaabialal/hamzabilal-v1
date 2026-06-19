@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Building LangChain Agents with Tool Use, Memory & Multi-Step Reasoning — Hamza Bilal</title>
+<meta name="description" content="A practical guide to building autonomous LangChain agents that can search, calculate, and call external APIs — with real code, common pitfalls, and production deployment tips."/>
+<meta name="author" content="Hamza Bilal"/>
+<link rel="canonical" href="https://hamzabilal.dev/blog/langchain-agents-tool-use.html"/>
+<link rel="icon" href="/favicon.ico"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg:#0a0a0a; --bg2:#111; --bg3:#181818; --border:rgba(255,255,255,0.08); --text:#fff; --text2:rgba(255,255,255,0.72); --text3:rgba(255,255,255,0.48); --accent:#a8f56a; --radius:16px; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; line-height:1.7; }
+  nav { position:sticky; top:0; z-index:100; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 5%; display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .nav-logo { font-size:1.1rem; font-weight:700; color:var(--text); text-decoration:none; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { color:var(--text3); text-decoration:none; font-size:0.9rem; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-cta { background:var(--accent); color:#000; padding:0.5rem 1.25rem; border-radius:100px; text-decoration:none; font-size:0.85rem; font-weight:600; }
+  .post-hero { padding:4rem 5% 3rem; max-width:800px; margin:0 auto; }
+  .back-link { display:inline-flex; align-items:center; gap:0.4rem; color:var(--text3); text-decoration:none; font-size:0.85rem; margin-bottom:2rem; }
+  .back-link:hover { color:var(--accent); }
+  .post-category { display:inline-block; background:rgba(168,245,106,0.1); color:var(--accent); border:1px solid rgba(168,245,106,0.2); padding:0.3rem 0.9rem; border-radius:100px; font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:1.25rem; }
+  .post-hero h1 { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; letter-spacing:-0.03em; line-height:1.2; margin-bottom:1rem; }
+  .post-meta { display:flex; gap:1.5rem; color:var(--text3); font-size:0.85rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .divider { width:100%; height:1px; background:var(--border); margin:2rem 0; }
+  .post-body { max-width:800px; margin:0 auto; padding:0 5% 6rem; }
+  .post-body p { color:var(--text2); margin-bottom:1.25rem; }
+  .post-body h2 { font-size:1.4rem; font-weight:700; letter-spacing:-0.02em; margin:2.5rem 0 1rem; }
+  .post-body h3 { font-size:1.1rem; font-weight:700; margin:1.75rem 0 0.75rem; }
+  .post-body ul, .post-body ol { color:var(--text2); padding-left:1.5rem; margin-bottom:1.25rem; }
+  .post-body li { margin-bottom:0.5rem; }
+  .post-body strong { color:var(--text); }
+  .post-body code { background:var(--bg3); color:var(--accent); padding:0.15rem 0.5rem; border-radius:6px; font-size:0.875rem; font-family:'Courier New',monospace; }
+  .post-body pre { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; overflow-x:auto; margin:1.5rem 0; }
+  .post-body pre code { background:none; padding:0; color:var(--text2); font-size:0.875rem; line-height:1.7; }
+  .callout { background:rgba(168,245,106,0.06); border:1px solid rgba(168,245,106,0.2); border-radius:var(--radius); padding:1.25rem 1.5rem; margin:1.75rem 0; }
+  .callout p { color:var(--text2); margin:0; }
+  .callout strong { color:var(--accent); }
+  .tag-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.5rem 0; }
+  .tag { font-size:0.78rem; color:var(--text3); background:rgba(255,255,255,0.05); padding:0.25rem 0.7rem; border-radius:100px; border:1px solid var(--border); }
+  .related { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:2rem; margin-top:3rem; }
+  .related h3 { font-size:0.8rem; font-weight:700; margin-bottom:1rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; }
+  .related-links { display:flex; flex-direction:column; gap:0.75rem; }
+  .related-links a { color:var(--text2); text-decoration:none; font-size:0.9rem; font-weight:600; }
+  .related-links a:hover { color:var(--accent); }
+  footer { border-top:1px solid var(--border); padding:2rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  footer p { font-size:0.85rem; color:var(--text3); }
+  footer a { color:var(--text2); text-decoration:none; font-size:0.85rem; }
+  footer a:hover { color:var(--accent); }
+  @media(max-width:600px) { .nav-links { display:none; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Hamza<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/blogs.html">Blog</a></li>
+    <li><a href="/#work">Work</a></li>
+  </ul>
+  <a href="mailto:hamzaabialal@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<div class="post-hero">
+  <a href="/blogs.html" class="back-link">← Back to Blog</a>
+  <div class="post-category">OpenAI / AI · LangChain</div>
+  <h1>Building LangChain Agents with Tool Use, Memory &amp; Multi-Step Reasoning</h1>
+  <div class="post-meta">
+    <span>✍️ Hamza Bilal</span>
+    <span>📅 September 2024</span>
+    <span>⏱ 13 min read</span>
+  </div>
+  <div class="tag-row">
+    <span class="tag">LangChain</span><span class="tag">OpenAI</span><span class="tag">AI Agents</span><span class="tag">Python</span>
+  </div>
+  <div class="divider"></div>
+</div>
+
+<div class="post-body">
+  <p>LangChain agents are the most powerful abstraction I've used for building AI that can take real actions — not just generate text. This guide covers how I built production-grade agents for a legal research platform (Signal Law Group) that could search case law, cross-reference statutes, and generate structured reports — autonomously.</p>
+
+  <h2>What is a LangChain Agent?</h2>
+  <p>A LangChain agent is a loop: the LLM decides which tool to call → the tool runs → the result goes back to the LLM → repeat until done. Unlike a simple chain (linear), an agent can decide its own path.</p>
+  <pre><code>User input → Agent → [Thinks: "I need to search first"]
+  → Calls search tool → Gets result
+  → [Thinks: "Now I need to filter by date"]
+  → Calls filter tool → Gets result
+  → [Thinks: "I have enough to answer"]
+  → Returns final answer</code></pre>
+
+  <h2>The Basic Setup</h2>
+  <pre><code>pip install langchain langchain-openai langchain-community</code></pre>
+
+  <pre><code>from langchain_openai import ChatOpenAI
+from langchain.agents import AgentExecutor, create_openai_tools_agent
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.tools import tool
+
+llm = ChatOpenAI(model="gpt-4o", temperature=0)</code></pre>
+
+  <h2>Defining Custom Tools</h2>
+  <p>Tools are just Python functions with a <code>@tool</code> decorator. The docstring becomes the tool description that the LLM reads to decide when to call it.</p>
+  <pre><code>@tool
+def search_case_law(query: str) -> str:
+    """Search the case law database for relevant legal cases.
+    Use this when the user asks about legal precedents or case references.
+    Input: a search query string."""
+    # Call your actual search API here
+    results = legal_db.search(query, top_k=5)
+    return "\n".join([f"- {r.title} ({r.year}): {r.summary}" for r in results])
+
+@tool
+def get_statute_text(statute_id: str) -> str:
+    """Retrieve the full text of a statute by its ID.
+    Use this when you have a specific statute reference to look up."""
+    return statute_db.get(statute_id)
+
+@tool
+def create_report(title: str, findings: str, citations: str) -> str:
+    """Create a structured legal research report.
+    Use this as the final step when you have all findings ready."""
+    report = LegalReport(title=title, findings=findings, citations=citations)
+    report.save()
+    return f"Report created: {report.id}"</code></pre>
+
+  <h2>Building the Agent with Memory</h2>
+  <pre><code">from langchain.memory import ConversationBufferWindowMemory
+
+# Memory: keep last 10 turns in context
+memory = ConversationBufferWindowMemory(
+    memory_key="chat_history",
+    return_messages=True,
+    k=10
+)
+
+prompt = ChatPromptTemplate.from_messages([
+    ("system", """You are a legal research assistant. Your job is to:
+1. Search for relevant case law using the search_case_law tool
+2. Look up specific statutes when referenced
+3. Synthesize findings into a structured report using create_report
+
+Always cite your sources. When uncertain, search again rather than guessing."""),
+    MessagesPlaceholder(variable_name="chat_history"),
+    ("human", "{input}"),
+    MessagesPlaceholder(variable_name="agent_scratchpad"),
+])
+
+tools = [search_case_law, get_statute_text, create_report]
+
+agent = create_openai_tools_agent(llm, tools, prompt)
+agent_executor = AgentExecutor(
+    agent=agent,
+    tools=tools,
+    memory=memory,
+    verbose=True,
+    max_iterations=10,  # prevent infinite loops
+    handle_parsing_errors=True
+)</code></pre>
+
+  <h2>Running the Agent</h2>
+  <pre><code>result = agent_executor.invoke({
+    "input": "Research cases about AI liability in autonomous vehicle accidents from 2020-2024. Create a report."
+})
+print(result["output"])</code></pre>
+
+  <p>The agent will: search for cases → retrieve relevant statute text → synthesize → call create_report → return the report ID. All automatically, without you specifying the steps.</p>
+
+  <h2>Adding Persistent Memory with Redis</h2>
+  <p>For production, in-memory conversation history is lost on restart. Use Redis-backed memory:</p>
+  <pre><code">from langchain_community.chat_message_histories import RedisChatMessageHistory
+from langchain_core.runnables.history import RunnableWithMessageHistory
+
+store = {}
+
+def get_session_history(session_id: str):
+    return RedisChatMessageHistory(
+        session_id=session_id,
+        url="redis://localhost:6379"
+    )
+
+agent_with_history = RunnableWithMessageHistory(
+    agent_executor,
+    get_session_history,
+    input_messages_key="input",
+    history_messages_key="chat_history"
+)</code></pre>
+
+  <h2>Production Gotchas</h2>
+  <h3>1. Always set max_iterations</h3>
+  <p>Without a limit, a confused agent can loop indefinitely. I set <code>max_iterations=15</code> and handle the <code>AgentFinish</code> vs <code>AgentAction</code> states explicitly.</p>
+
+  <h3>2. Tool descriptions are critical</h3>
+  <p>The LLM decides which tool to call based entirely on the docstring. Vague descriptions lead to wrong tool calls. Be explicit about when each tool should be used and what its input format is.</p>
+
+  <h3>3. Rate limiting on tool calls</h3>
+  <p>If your tools call external APIs, add rate limit handling inside the tool function itself — don't rely on the agent to space out calls.</p>
+
+  <h3>4. Streaming for long-running agents</h3>
+  <pre><code">async for event in agent_executor.astream_events(
+    {"input": user_query}, version="v1"
+):
+    if event["event"] == "on_tool_start":
+        print(f"Calling tool: {event['name']}")
+    elif event["event"] == "on_llm_stream":
+        print(event["data"]["chunk"].content, end="", flush=True)</code></pre>
+
+  <div class="callout"><p><strong>Real results from the Signal Law Group project:</strong> The agent reduced legal research time from 4–6 hours per topic to 8–12 minutes. Accuracy (verified by a paralegal) was 91% — comparable to junior associate research quality.</p></div>
+
+  <h2>When to Use LangChain Agents vs Simple Chains</h2>
+  <ul>
+    <li><strong>Use agents</strong> when the path to the answer is unknown upfront and the LLM needs to decide which tools to use</li>
+    <li><strong>Use simple chains</strong> when the steps are fixed and predictable (prompt → OpenAI → parse → done)</li>
+    <li><strong>Use agents</strong> when you need multi-step reasoning across different data sources</li>
+    <li><strong>Use chains</strong> when latency is critical — agents add overhead from the decision loop</li>
+  </ul>
+
+  <p>Need a custom AI agent for your research or automation workflow? I build these from scratch with production deployment. <a href="mailto:hamzaabialal@gmail.com" style="color:var(--accent);">Let's talk.</a></p>
+
+  <div class="related">
+    <h3>Related Posts</h3>
+    <div class="related-links">
+      <a href="/blog/openai-n8n-crm-automation.html">→ OpenAI + n8n: Building AI-Powered CRM Automation</a>
+      <a href="/blog/fastapi-postgresql-docker.html">→ Production REST APIs with FastAPI + PostgreSQL + Docker</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Hamza Bilal · AI Automation &amp; Backend Engineer</p>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+    <a href="/">Portfolio</a>
+    <a href="/services.html">Services</a>
+    <a href="/blogs.html">Blog</a>
+    <a href="mailto:hamzaabialal@gmail.com">Email</a>
+  </div>
+</footer>
+</body>
+</html>
