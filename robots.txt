@@ -17,3 +17,6 @@ User-agent: Bingbot
 Allow: /
 
 Sitemap: https://hamzabilal.dev/sitemap.xml
+
+# LLM context file (llms.txt standard)
+# https://hamzabilal.dev/llms.txt

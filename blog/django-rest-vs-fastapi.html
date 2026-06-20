@@ -7,6 +7,67 @@
 <meta name="description" content="Based on building production APIs for automation-heavy products — a pragmatic comparison of DRF and FastAPI covering async support, ORM choices, deployment, and when each wins."/>
 <meta name="author" content="Hamza Bilal"/>
 <link rel="canonical" href="https://hamzabilal.dev/blog/django-rest-vs-fastapi.html"/>
+<meta property="og:title" content="Django REST Framework vs FastAPI: Which to Choose in 2025? — Hamza Bilal"/>
+<meta property="og:description" content="Based on building production APIs for automation-heavy products — a pragmatic comparison of DRF and FastAPI covering async support, ORM choices, deployment, and when each wins."/>
+<meta property="og:url" content="https://hamzabilal.dev/blog/django-rest-vs-fastapi.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="https://hamzabilal.dev/assets/images/avatar/avatar.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Django REST Framework vs FastAPI: Which to Choose in 2025? — Hamza Bilal"/>
+<meta name="twitter:description" content="Based on building production APIs for automation-heavy products — a pragmatic comparison of DRF and FastAPI covering async support, ORM choices, deployment, and when each wins."/>
+<meta name="twitter:image" content="https://hamzabilal.dev/assets/images/avatar/avatar.png"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Django REST Framework vs FastAPI: Which to Choose in 2025?",
+  "description": "Based on building production APIs for automation-heavy products — a pragmatic comparison of DRF and FastAPI covering async support, ORM choices, deployment, and when each wins.",
+  "url": "https://hamzabilal.dev/blog/django-rest-vs-fastapi.html",
+  "datePublished": "2024-12-01",
+  "dateModified": "2024-12-01",
+  "author": {
+    "@type": "Person",
+    "name": "Hamza Bilal",
+    "url": "https://hamzabilal.dev"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Hamza Bilal",
+    "url": "https://hamzabilal.dev"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hamzabilal.dev/blog/django-rest-vs-fastapi.html"
+  },
+  "image": "https://hamzabilal.dev/assets/images/avatar/avatar.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://hamzabilal.dev"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://hamzabilal.dev/blogs.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Django REST Framework vs FastAPI: Which to Choose in 2025?",
+      "item": "https://hamzabilal.dev/blog/django-rest-vs-fastapi.html"
+    }
+  ]
+}
+</script>
 <link rel="icon" href="/favicon.ico"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,6 +115,12 @@
   footer p { font-size:0.85rem; color:var(--text3); }
   footer a { color:var(--text2); text-decoration:none; font-size:0.85rem; }
   footer a:hover { color:var(--accent); }
+  .services-cta { background:rgba(168,245,106,0.06); border:1px solid rgba(168,245,106,0.2); border-radius:16px; padding:2rem; margin-top:2rem; }
+  .services-cta-label { font-size:0.75rem; font-weight:700; color:#a8f56a; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem; }
+  .services-cta p { font-size:0.9rem; color:rgba(255,255,255,0.56); margin-bottom:1.25rem; }
+  .services-links { display:flex; flex-wrap:wrap; gap:0.6rem; }
+  .services-links a { color:rgba(255,255,255,0.72); text-decoration:none; font-size:0.85rem; font-weight:600; border:1px solid rgba(255,255,255,0.12); padding:0.35rem 0.9rem; border-radius:100px; transition:all 0.2s; }
+  .services-links a:hover { color:#a8f56a; border-color:#a8f56a; }
   @media(max-width:600px) { .nav-links { display:none; } }
 </style>
 </head>
@@ -64,9 +131,10 @@
     <li><a href="/">Home</a></li>
     <li><a href="/services.html">Services</a></li>
     <li><a href="/blogs.html">Blog</a></li>
-    <li><a href="/#work">Work</a></li>
+    <li><a href="/n8n-automation-developer.html">n8n</a></li>
+    <li><a href="/ai-agent-development.html">AI Agents</a></li>
   </ul>
-  <a href="mailto:hamzaabialal@gmail.com" class="nav-cta">Hire Me</a>
+  <a href="https://calendly.com/hamzaabialal/new-meeting" class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
 </nav>
 
 <div class="post-hero">
@@ -154,6 +222,24 @@ async def stripe_webhook(request: Request, background_tasks: BackgroundTasks):
     </div>
   </div>
 </div>
+  
+<div class="related-posts" style="margin:2.5rem 0 0;padding:1.75rem 2rem;background:rgba(168,245,106,0.05);border:1px solid rgba(168,245,106,0.18);border-radius:12px;">
+  <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#a8f56a;margin-bottom:1rem;">Related Posts</p>
+  <ul style="list-style:none;padding:0;margin:0;">
+    <li><a href="fastapi-postgresql-docker.html" style="color:#a8f56a;text-decoration:none;font-size:15px;line-height:1.8;display:block;">→ Production FastAPI + PostgreSQL + Docker (2025)</a></li>
+    <li><a href="langchain-agents-tool-use.html" style="color:#a8f56a;text-decoration:none;font-size:15px;line-height:1.8;display:block;">→ Building LangChain Agents with Tool Use & Memory</a></li>
+    <li><a href="openai-n8n-crm-automation.html" style="color:#a8f56a;text-decoration:none;font-size:15px;line-height:1.8;display:block;">→ OpenAI + n8n: Building AI-Powered CRM Automation</a></li>
+  </ul>
+</div>
+<div class="services-cta">
+    <div class="services-cta-label">Hire Me For This</div>
+    <p>I build production Django and FastAPI backends — REST APIs, async endpoints, AI integrations, and AWS deployments.</p>
+    <div class="services-links">
+      <a href="/openai-developer.html">OpenAI Developer for Hire →</a>
+      <a href="/ai-agent-development.html">AI Agent Development →</a>
+      <a href="/ai-automation-consultant.html">AI Automation Consultant →</a>
+    </div>
+  </div>
 
 <footer>
   <p>© 2025 Hamza Bilal · AI Automation &amp; Backend Engineer</p>

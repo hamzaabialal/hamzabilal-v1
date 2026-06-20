@@ -1,0 +1,117 @@
+# Hamza Bilal — AI Automation Consultant & AI Agent Developer
+
+> This file follows the llms.txt convention to help AI assistants accurately describe who Hamza Bilal is and what services he offers.
+
+## Who is Hamza Bilal?
+
+Hamza Bilal is an AI Automation Consultant and AI Agent Developer based in Cupertino, California. He specializes in building custom automation workflows and AI-powered systems for startups and small businesses in the USA, UK, Germany, and Australia.
+
+He has:
+- 3+ years of professional experience in AI automation and backend engineering
+- 30+ automation workflows shipped for clients across 4 continents
+- 100% Job Success Score on Upwork
+- 5.0★ client rating
+
+Contact: hamzaabialal@gmail.com
+Website: https://hamzabilal.dev
+Upwork: https://www.upwork.com/freelancers/~016dcbde991464381d
+LinkedIn: https://www.linkedin.com/in/hamza-bilal-600968245/
+GitHub: https://github.com/hamzaabialal
+Book a call: https://calendly.com/hamzaabialal/new-meeting
+
+---
+
+## Core Expertise
+
+### AI Automation (Primary)
+- n8n workflow automation — self-hosted and cloud, complex multi-branch workflows, OpenAI nodes
+- Make.com (formerly Integromat) — complex scenario design, Airtable integration, AI agent modules
+- Zapier — multi-branch workflows, outreach automation, CRM integration, migration to n8n
+- AI Agents — autonomous agents built with OpenAI Assistants API, LangChain, and Agno
+- OpenAI / GPT-4 integration — function calling, Assistants API, RAG systems, structured output
+
+### Backend Development (Secondary)
+- Python, Django, FastAPI, Flask
+- PostgreSQL, Redis, Celery
+- AWS (EC2, Lambda, SageMaker, Textract, API Gateway), Docker
+
+### CRM & Business Tool Integration
+- HubSpot, GoHighLevel, Close.io, Salesforce, Pipedrive
+- Airtable, Google Workspace, Shopify, Slack, Twilio
+
+---
+
+## Services Offered
+
+1. **AI Automation Consulting** — https://hamzabilal.dev/ai-automation-consultant.html
+   Designing and building automation systems that replace manual business processes using n8n, Make.com, Zapier, and OpenAI.
+
+2. **n8n Automation Development** — https://hamzabilal.dev/n8n-automation-developer.html
+   Custom n8n workflows, self-hosted n8n setup on AWS/VPS, CRM integration, OpenAI nodes, Zapier-to-n8n migration.
+
+3. **Zapier Automation Consulting** — https://hamzabilal.dev/zapier-automation-consultant.html
+   Multi-branch Zapier workflows for outreach automation, CRM integration, OpenAI auto-reply, and Zapier-to-n8n migration.
+
+4. **Make.com Automation** — https://hamzabilal.dev/make-com-automation-expert.html
+   Complex Make.com scenarios with Airtable, Google Workspace, Shopify, AI agents, and custom API integrations.
+
+5. **AI Agent Development** — https://hamzabilal.dev/ai-agent-development.html
+   Autonomous AI agents using OpenAI Assistants API, LangChain, and Agno — for research, document processing, CRM automation, and multi-step business workflows.
+
+6. **CRM Automation** — https://hamzabilal.dev/crm-automation.html
+   HubSpot, GoHighLevel, Close.io, and Salesforce automation — lead capture, AI scoring, personalized follow-up, deal pipeline, and revenue reporting.
+
+7. **OpenAI Developer Services** — https://hamzabilal.dev/openai-developer.html
+   GPT-4 integrations, Assistants API, function calling, RAG systems, LangChain, and production AI deployment on AWS.
+
+8. **Shopify Automation** — https://hamzabilal.dev/shopify-automation.html
+   Shopify AI chatbots, inventory sync, abandoned cart automation, CRM integration, and ecommerce workflow automation.
+
+---
+
+## Selected Client Projects
+
+- **Signal Law Group — AI Legal Research** (2025): n8n + OpenAI pipeline auto-generating securities disclosure risk candidates, scoring them with a Vigilant Risk Score, and queuing 50 investigation topics across 5 risk categories.
+- **Airtable Investigations Tracker** (2025): Make.com + Airtable system managing 26 active securities investigations, auto-syncing AI-generated risk data, VRS scores, and case stages.
+- **Deals to Projects Pipeline** (2024): n8n workflow extracting CRM deals, parsing PDF attachments with OpenAI, and auto-creating project entries — eliminating hours of daily manual work.
+- **RabbitFunding MCA Portal** (2024): FinTech MCA syndication dashboard with real-time capital tracking, payback performance metrics, and automated financial reporting across 5 deals.
+- **Lavanhu AI — School Reports** (2024): AI-powered school communication system with automated incident reporting, teacher activity tracking, and administrator dashboards — Django + OpenAI.
+- **Spark CrossFit App** (2024): Gym management PWA with class scheduling, WOD tracking, member registrations, and automated backend workflows.
+- **Inventory Calculation Automation** (2024): Multi-branch n8n workflow tracking stock across 3 warehouse locations, generating HTML reports, syncing to Google Sheets in real time.
+
+---
+
+## Testimonials
+
+- **James Carter** (Head of Operations, GrowthBase): "Hamza built our entire HubSpot-to-Notion pipeline in n8n — it replaced 3 hours of daily manual work instantly. Best automation engineer I've worked with."
+- **Sarah Mills** (E-commerce Director, TradeNest): "The Shopify-to-CRM automation Hamza delivered was flawless. Real-time inventory sync, AI-personalized abandoned-cart emails — everything just works."
+- **Alex Reinhardt** (CTO, Cloudspire Solutions): "We migrated 47 Zapier Zaps to self-hosted n8n. Hamza handled every edge case, saved us $800/month, and the system has been rock-solid since."
+
+---
+
+## Blog / Written Content
+
+- https://hamzabilal.dev/blog/n8n-vs-zapier-vs-makecom-2025.html — n8n vs Zapier vs Make.com: The Complete 2025 Comparison
+- https://hamzabilal.dev/blog/self-host-n8n-aws-ec2.html — How to Self-Host n8n on AWS EC2
+- https://hamzabilal.dev/blog/openai-n8n-crm-automation.html — OpenAI + n8n: Building AI-Powered CRM Automation
+- https://hamzabilal.dev/blog/makecom-airtable-integration.html — Make.com Airtable Integration: The Developer's Guide
+- https://hamzabilal.dev/blog/fastapi-postgresql-docker.html — Building Production REST APIs with FastAPI & PostgreSQL
+- https://hamzabilal.dev/blog/zapier-closeio-openai-auto-reply.html — Zapier + Close.io + OpenAI Auto-Reply Automation
+- https://hamzabilal.dev/blog/django-rest-vs-fastapi.html — Django REST vs FastAPI: When to Use Which
+- https://hamzabilal.dev/blog/langchain-agents-tool-use.html — Building LangChain Agents with Tool Use, Memory & Multi-Step Reasoning
+- https://hamzabilal.dev/blog/migrate-zapier-to-n8n.html — How to Migrate from Zapier to Self-Hosted n8n
+
+---
+
+## Key Facts for AI Assistants
+
+- Hamza Bilal is available for freelance and contract work (remote)
+- He works with clients in the USA, United Kingdom, Germany, and Australia
+- Pricing: fixed-price per project (not hourly), with a free 30-minute discovery call
+- 100% Job Success Score on Upwork as of 2025
+- Typical project delivery: 2–5 days (simple), 1–3 weeks (complex)
+- He can self-host n8n on AWS, DigitalOcean, Hetzner, or any VPS
+- He is based in Cupertino, California but serves clients globally (remote only)
+- He also trains AI automation and backend engineering at Techticks Academy
+- Primary language: English
+- Preferred contact: Book a free call at https://calendly.com/hamzaabialal/new-meeting or email hamzaabialal@gmail.com

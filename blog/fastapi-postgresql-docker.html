@@ -7,6 +7,67 @@
 <meta name="description" content="Async FastAPI app with SQLAlchemy 2.0, Alembic migrations, JWT auth, Celery background tasks, and Docker Compose — the exact stack I use for automation backend projects."/>
 <meta name="author" content="Hamza Bilal"/>
 <link rel="canonical" href="https://hamzabilal.dev/blog/fastapi-postgresql-docker.html"/>
+<meta property="og:title" content="Production REST APIs with FastAPI + PostgreSQL + Docker (2025) — Hamza Bilal"/>
+<meta property="og:description" content="Async FastAPI app with SQLAlchemy 2.0, Alembic migrations, JWT auth, Celery background tasks, and Docker Compose — the exact stack I use for automation backend projects."/>
+<meta property="og:url" content="https://hamzabilal.dev/blog/fastapi-postgresql-docker.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="https://hamzabilal.dev/assets/images/avatar/avatar.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Production REST APIs with FastAPI + PostgreSQL + Docker (2025) — Hamza Bilal"/>
+<meta name="twitter:description" content="Async FastAPI app with SQLAlchemy 2.0, Alembic migrations, JWT auth, Celery background tasks, and Docker Compose — the exact stack I use for automation backend projects."/>
+<meta name="twitter:image" content="https://hamzabilal.dev/assets/images/avatar/avatar.png"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Production REST APIs with FastAPI + PostgreSQL + Docker (2025)",
+  "description": "Async FastAPI app with SQLAlchemy 2.0, Alembic migrations, JWT auth, Celery background tasks, and Docker Compose — the exact stack I use for automation backend projects.",
+  "url": "https://hamzabilal.dev/blog/fastapi-postgresql-docker.html",
+  "datePublished": "2025-01-05",
+  "dateModified": "2025-01-05",
+  "author": {
+    "@type": "Person",
+    "name": "Hamza Bilal",
+    "url": "https://hamzabilal.dev"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Hamza Bilal",
+    "url": "https://hamzabilal.dev"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hamzabilal.dev/blog/fastapi-postgresql-docker.html"
+  },
+  "image": "https://hamzabilal.dev/assets/images/avatar/avatar.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://hamzabilal.dev"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://hamzabilal.dev/blogs.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Production REST APIs with FastAPI + PostgreSQL + Docker (2025)",
+      "item": "https://hamzabilal.dev/blog/fastapi-postgresql-docker.html"
+    }
+  ]
+}
+</script>
 <link rel="icon" href="/favicon.ico"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,6 +112,12 @@
   footer p { font-size:0.85rem; color:var(--text3); }
   footer a { color:var(--text2); text-decoration:none; font-size:0.85rem; }
   footer a:hover { color:var(--accent); }
+  .services-cta { background:rgba(168,245,106,0.06); border:1px solid rgba(168,245,106,0.2); border-radius:16px; padding:2rem; margin-top:2rem; }
+  .services-cta-label { font-size:0.75rem; font-weight:700; color:#a8f56a; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem; }
+  .services-cta p { font-size:0.9rem; color:rgba(255,255,255,0.56); margin-bottom:1.25rem; }
+  .services-links { display:flex; flex-wrap:wrap; gap:0.6rem; }
+  .services-links a { color:rgba(255,255,255,0.72); text-decoration:none; font-size:0.85rem; font-weight:600; border:1px solid rgba(255,255,255,0.12); padding:0.35rem 0.9rem; border-radius:100px; transition:all 0.2s; }
+  .services-links a:hover { color:#a8f56a; border-color:#a8f56a; }
   @media(max-width:600px) { .nav-links { display:none; } }
 </style>
 </head>
@@ -61,9 +128,10 @@
     <li><a href="/">Home</a></li>
     <li><a href="/services.html">Services</a></li>
     <li><a href="/blogs.html">Blog</a></li>
-    <li><a href="/#work">Work</a></li>
+    <li><a href="/n8n-automation-developer.html">n8n</a></li>
+    <li><a href="/ai-agent-development.html">AI Agents</a></li>
   </ul>
-  <a href="mailto:hamzaabialal@gmail.com" class="nav-cta">Hire Me</a>
+  <a href="https://calendly.com/hamzaabialal/new-meeting" class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
 </nav>
 
 <div class="post-hero">
@@ -253,6 +321,24 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]</code></p
     </div>
   </div>
 </div>
+  
+<div class="related-posts" style="margin:2.5rem 0 0;padding:1.75rem 2rem;background:rgba(168,245,106,0.05);border:1px solid rgba(168,245,106,0.18);border-radius:12px;">
+  <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#a8f56a;margin-bottom:1rem;">Related Posts</p>
+  <ul style="list-style:none;padding:0;margin:0;">
+    <li><a href="django-rest-vs-fastapi.html" style="color:#a8f56a;text-decoration:none;font-size:15px;line-height:1.8;display:block;">→ Django REST Framework vs FastAPI: Which to Choose?</a></li>
+    <li><a href="langchain-agents-tool-use.html" style="color:#a8f56a;text-decoration:none;font-size:15px;line-height:1.8;display:block;">→ Building LangChain Agents with Tool Use & Memory</a></li>
+    <li><a href="openai-n8n-crm-automation.html" style="color:#a8f56a;text-decoration:none;font-size:15px;line-height:1.8;display:block;">→ OpenAI + n8n: Building AI-Powered CRM Automation</a></li>
+  </ul>
+</div>
+<div class="services-cta">
+    <div class="services-cta-label">Hire Me For This</div>
+    <p>I build production FastAPI backends deployed on AWS — with PostgreSQL, Docker, Celery, and OpenAI integrations built in.</p>
+    <div class="services-links">
+      <a href="/openai-developer.html">OpenAI Developer for Hire →</a>
+      <a href="/ai-agent-development.html">AI Agent Development →</a>
+      <a href="/ai-automation-consultant.html">AI Automation Consultant →</a>
+    </div>
+  </div>
 
 <footer>
   <p>© 2025 Hamza Bilal · AI Automation &amp; Backend Engineer</p>
