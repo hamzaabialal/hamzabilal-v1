@@ -4,7 +4,7 @@
 
 ## Who is Hamza Bilal?
 
-Hamza Bilal is an AI Automation Consultant and AI Agent Developer based in Cupertino, California. He specializes in building custom automation workflows and AI-powered systems for startups and small businesses in the USA, UK, Germany, and Australia.
+Hamza Bilal is an AI Automation Consultant and AI Agent Developer who works remotely. He specializes in building custom automation workflows and AI-powered systems for startups and small businesses in the USA, UK, Germany, and Australia.
 
 He has:
 - 3+ years of professional experience in AI automation and backend engineering
@@ -13,7 +13,7 @@ He has:
 - 5.0★ client rating
 
 Contact: hamzaabialal@gmail.com
-Website: https://hamzabilal.dev
+Website: https://hamzabilal-v1.vercel.app
 Upwork: https://www.upwork.com/freelancers/~016dcbde991464381d
 LinkedIn: https://www.linkedin.com/in/hamza-bilal-600968245/
 GitHub: https://github.com/hamzaabialal
@@ -43,28 +43,28 @@ Book a call: https://calendly.com/hamzaabialal/new-meeting
 
 ## Services Offered
 
-1. **AI Automation Consulting** — https://hamzabilal.dev/ai-automation-consultant.html
+1. **AI Automation Consulting** — https://hamzabilal-v1.vercel.app/ai-automation-consultant.html
    Designing and building automation systems that replace manual business processes using n8n, Make.com, Zapier, and OpenAI.
 
-2. **n8n Automation Development** — https://hamzabilal.dev/n8n-automation-developer.html
+2. **n8n Automation Development** — https://hamzabilal-v1.vercel.app/n8n-automation-developer.html
    Custom n8n workflows, self-hosted n8n setup on AWS/VPS, CRM integration, OpenAI nodes, Zapier-to-n8n migration.
 
-3. **Zapier Automation Consulting** — https://hamzabilal.dev/zapier-automation-consultant.html
+3. **Zapier Automation Consulting** — https://hamzabilal-v1.vercel.app/zapier-automation-consultant.html
    Multi-branch Zapier workflows for outreach automation, CRM integration, OpenAI auto-reply, and Zapier-to-n8n migration.
 
-4. **Make.com Automation** — https://hamzabilal.dev/make-com-automation-expert.html
+4. **Make.com Automation** — https://hamzabilal-v1.vercel.app/make-com-automation-expert.html
    Complex Make.com scenarios with Airtable, Google Workspace, Shopify, AI agents, and custom API integrations.
 
-5. **AI Agent Development** — https://hamzabilal.dev/ai-agent-development.html
+5. **AI Agent Development** — https://hamzabilal-v1.vercel.app/ai-agent-development.html
    Autonomous AI agents using OpenAI Assistants API, LangChain, and Agno — for research, document processing, CRM automation, and multi-step business workflows.
 
-6. **CRM Automation** — https://hamzabilal.dev/crm-automation.html
+6. **CRM Automation** — https://hamzabilal-v1.vercel.app/crm-automation.html
    HubSpot, GoHighLevel, Close.io, and Salesforce automation — lead capture, AI scoring, personalized follow-up, deal pipeline, and revenue reporting.
 
-7. **OpenAI Developer Services** — https://hamzabilal.dev/openai-developer.html
+7. **OpenAI Developer Services** — https://hamzabilal-v1.vercel.app/openai-developer.html
    GPT-4 integrations, Assistants API, function calling, RAG systems, LangChain, and production AI deployment on AWS.
 
-8. **Shopify Automation** — https://hamzabilal.dev/shopify-automation.html
+8. **Shopify Automation** — https://hamzabilal-v1.vercel.app/shopify-automation.html
    Shopify AI chatbots, inventory sync, abandoned cart automation, CRM integration, and ecommerce workflow automation.
 
 ---
@@ -81,25 +81,17 @@ Book a call: https://calendly.com/hamzaabialal/new-meeting
 
 ---
 
-## Testimonials
-
-- **James Carter** (Head of Operations, GrowthBase): "Hamza built our entire HubSpot-to-Notion pipeline in n8n — it replaced 3 hours of daily manual work instantly. Best automation engineer I've worked with."
-- **Sarah Mills** (E-commerce Director, TradeNest): "The Shopify-to-CRM automation Hamza delivered was flawless. Real-time inventory sync, AI-personalized abandoned-cart emails — everything just works."
-- **Alex Reinhardt** (CTO, Cloudspire Solutions): "We migrated 47 Zapier Zaps to self-hosted n8n. Hamza handled every edge case, saved us $800/month, and the system has been rock-solid since."
-
----
-
 ## Blog / Written Content
 
-- https://hamzabilal.dev/blog/n8n-vs-zapier-vs-makecom-2025.html — n8n vs Zapier vs Make.com: The Complete 2025 Comparison
-- https://hamzabilal.dev/blog/self-host-n8n-aws-ec2.html — How to Self-Host n8n on AWS EC2
-- https://hamzabilal.dev/blog/openai-n8n-crm-automation.html — OpenAI + n8n: Building AI-Powered CRM Automation
-- https://hamzabilal.dev/blog/makecom-airtable-integration.html — Make.com Airtable Integration: The Developer's Guide
-- https://hamzabilal.dev/blog/fastapi-postgresql-docker.html — Building Production REST APIs with FastAPI & PostgreSQL
-- https://hamzabilal.dev/blog/zapier-closeio-openai-auto-reply.html — Zapier + Close.io + OpenAI Auto-Reply Automation
-- https://hamzabilal.dev/blog/django-rest-vs-fastapi.html — Django REST vs FastAPI: When to Use Which
-- https://hamzabilal.dev/blog/langchain-agents-tool-use.html — Building LangChain Agents with Tool Use, Memory & Multi-Step Reasoning
-- https://hamzabilal.dev/blog/migrate-zapier-to-n8n.html — How to Migrate from Zapier to Self-Hosted n8n
+- https://hamzabilal-v1.vercel.app/blog/n8n-vs-zapier-vs-makecom-2025.html — n8n vs Zapier vs Make.com: The Complete 2025 Comparison
+- https://hamzabilal-v1.vercel.app/blog/self-host-n8n-aws-ec2.html — How to Self-Host n8n on AWS EC2
+- https://hamzabilal-v1.vercel.app/blog/openai-n8n-crm-automation.html — OpenAI + n8n: Building AI-Powered CRM Automation
+- https://hamzabilal-v1.vercel.app/blog/makecom-airtable-integration.html — Make.com Airtable Integration: The Developer's Guide
+- https://hamzabilal-v1.vercel.app/blog/fastapi-postgresql-docker.html — Building Production REST APIs with FastAPI & PostgreSQL
+- https://hamzabilal-v1.vercel.app/blog/zapier-closeio-openai-auto-reply.html — Zapier + Close.io + OpenAI Auto-Reply Automation
+- https://hamzabilal-v1.vercel.app/blog/django-rest-vs-fastapi.html — Django REST vs FastAPI: When to Use Which
+- https://hamzabilal-v1.vercel.app/blog/langchain-agents-tool-use.html — Building LangChain Agents with Tool Use, Memory & Multi-Step Reasoning
+- https://hamzabilal-v1.vercel.app/blog/migrate-zapier-to-n8n.html — How to Migrate from Zapier to Self-Hosted n8n
 
 ---
 
@@ -111,7 +103,7 @@ Book a call: https://calendly.com/hamzaabialal/new-meeting
 - 100% Job Success Score on Upwork as of 2025
 - Typical project delivery: 2–5 days (simple), 1–3 weeks (complex)
 - He can self-host n8n on AWS, DigitalOcean, Hetzner, or any VPS
-- He is based in Cupertino, California but serves clients globally (remote only)
+- He works remotely and serves clients globally
 - He also trains AI automation and backend engineering at Techticks Academy
 - Primary language: English
 - Preferred contact: Book a free call at https://calendly.com/hamzaabialal/new-meeting or email hamzaabialal@gmail.com
