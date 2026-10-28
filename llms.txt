@@ -4,14 +4,19 @@
 
 ## Who is Hamza Bilal?
 
-Hamza Bilal is an AI Automation Consultant and AI Agent Developer based in Bahawalpur, Pakistan, working remotely. He specializes in building custom automation workflows and AI-powered systems for startups and small businesses in the USA, UK, Germany, and Australia.
+Hamza Bilal is an AI Automation Engineer and Backend Engineer who works as an AI automation consultant and AI agent developer. He is based in Bahawalpur, Pakistan, and works remotely. He specializes in building custom automation workflows and AI-powered systems for startups and small businesses in the USA, UK, Germany, and Australia.
 
 He has:
 - 3+ years of professional experience in AI automation and backend engineering
 - 30+ automation workflows shipped for clients across 4 continents
 - 100% Job Success Score on Upwork
 - 5.0★ client rating
-- Bachelor's in Data Science, Islamia University of Bahawalpur (2020–2024)
+
+## Experience & Education
+
+- **2023 – Now: AI Automation Engineer & Trainer, Techticks Academy** — Builds n8n, Make.com and Zapier workflows for clients across the USA, UK, Germany and Australia; in-house trainer for AI automation and backend engineering.
+- **2023: Python Developer Intern, Enigmatix** — Built back-end services and data-analysis tooling in Python, Django and Django REST Framework; introduced unit testing with Pytest.
+- **2020 – 2024: Bachelor's in Data Science, Islamia University of Bahawalpur** — Includes the IBM Python for Data Science certification.
 
 Contact: hamzaabialal@gmail.com
 Website: https://hamzabilal-v1.vercel.app
@@ -19,6 +24,12 @@ Upwork: https://www.upwork.com/freelancers/~016dcbde991464381d
 LinkedIn: https://www.linkedin.com/in/hamza-bilal-600968245/
 GitHub: https://github.com/hamzaabialal
 Book a call: https://calendly.com/hamzaabialal/new-meeting
+
+## Main Pages
+
+- [Home / Portfolio](https://hamzabilal-v1.vercel.app/) — Profile, selected projects, experience, education and contact details.
+- [Services](https://hamzabilal-v1.vercel.app/services.html) — n8n, Zapier and Make.com automation, CRM integration, OpenAI agents, Django/FastAPI backend development and AWS deployments.
+- [Blog](https://hamzabilal-v1.vercel.app/blogs.html) — Practical guides on n8n, Zapier, Make.com, OpenAI integrations, Django/FastAPI backends and AI agent engineering.
 
 ---
 
@@ -32,7 +43,7 @@ Book a call: https://calendly.com/hamzaabialal/new-meeting
 - OpenAI / GPT-4 integration — function calling, Assistants API, RAG systems, structured output
 
 ### Backend Development (Secondary)
-- Python, Django, FastAPI, Flask
+- Python, Django, Django REST Framework, FastAPI
 - PostgreSQL, Redis, Celery
 - AWS (EC2, Lambda, SageMaker, Textract, API Gateway), Docker
 
@@ -53,19 +64,19 @@ Book a call: https://calendly.com/hamzaabialal/new-meeting
 3. **Zapier Automation Consulting** — https://hamzabilal-v1.vercel.app/zapier-automation-consultant.html
    Multi-branch Zapier workflows for outreach automation, CRM integration, OpenAI auto-reply, and Zapier-to-n8n migration.
 
-4. **Make.com Automation** — https://hamzabilal-v1.vercel.app/make-com-automation-expert.html
+4. **Make.com Automation Expert Services** — https://hamzabilal-v1.vercel.app/make-com-automation-expert.html
    Complex Make.com scenarios with Airtable, Google Workspace, Shopify, AI agents, and custom API integrations.
 
-5. **AI Agent Development** — https://hamzabilal-v1.vercel.app/ai-agent-development.html
+5. **Custom AI Agent Development** — https://hamzabilal-v1.vercel.app/ai-agent-development.html
    Autonomous AI agents using OpenAI Assistants API, LangChain, and Agno — for research, document processing, CRM automation, and multi-step business workflows.
 
-6. **CRM Automation** — https://hamzabilal-v1.vercel.app/crm-automation.html
+6. **CRM Automation Consulting** — https://hamzabilal-v1.vercel.app/crm-automation.html
    HubSpot, GoHighLevel, Close.io, and Salesforce automation — lead capture, AI scoring, personalized follow-up, deal pipeline, and revenue reporting.
 
 7. **OpenAI Developer Services** — https://hamzabilal-v1.vercel.app/openai-developer.html
    GPT-4 integrations, Assistants API, function calling, RAG systems, LangChain, and production AI deployment on AWS.
 
-8. **Shopify Automation** — https://hamzabilal-v1.vercel.app/shopify-automation.html
+8. **Shopify Automation Development** — https://hamzabilal-v1.vercel.app/shopify-automation.html
    Shopify AI chatbots, inventory sync, abandoned cart automation, CRM integration, and ecommerce workflow automation.
 
 ---
@@ -74,9 +85,9 @@ Book a call: https://calendly.com/hamzaabialal/new-meeting
 
 - **Signal Law Group — AI Legal Research** (2025): n8n + OpenAI pipeline auto-generating securities disclosure risk candidates, scoring them with a Vigilant Risk Score, and queuing 50 investigation topics across 5 risk categories.
 - **Airtable Investigations Tracker** (2025): Make.com + Airtable system managing 26 active securities investigations, auto-syncing AI-generated risk data, VRS scores, and case stages.
-- **Deals to Projects Pipeline** (2024): n8n workflow extracting CRM deals, parsing PDF attachments with OpenAI, and auto-creating project entries — eliminating hours of daily manual work.
-- **RabbitFunding MCA Portal** (2024): FinTech MCA syndication dashboard with real-time capital tracking, payback performance metrics, and automated financial reporting across 5 deals.
-- **Lavanhu AI — School Reports** (2024): AI-powered school communication system with automated incident reporting, teacher activity tracking, and administrator dashboards — Django + OpenAI.
+- **Deals to Projects Pipeline** (2024): n8n workflow extracting CRM deals, parsing PDF attachments with OpenAI, and auto-creating project entries — eliminating 2+ hours of daily manual work.
+- **RabbitFunding MCA Portal** (2024): Live MCA syndication dashboard tracking capital balance, payback performance and transaction metrics across 5 deals, with automated data verification and real-time financial reporting.
+- **Lavanhu AI — School Reports** (2024): AI-powered school communication and incident management system with teacher activity tracking, student oversight dashboards and automated administrator reports — Django backend.
 - **Spark CrossFit App** (2024): Gym management PWA with class scheduling, WOD tracking, member registrations, and automated backend workflows.
 - **Inventory Calculation Automation** (2024): Multi-branch n8n workflow tracking stock across 3 warehouse locations, generating HTML reports, syncing to Google Sheets in real time.
 
@@ -84,15 +95,17 @@ Book a call: https://calendly.com/hamzaabialal/new-meeting
 
 ## Blog / Written Content
 
-- https://hamzabilal-v1.vercel.app/blog/n8n-vs-zapier-vs-makecom-2025.html — n8n vs Zapier vs Make.com: The Complete 2025 Comparison
-- https://hamzabilal-v1.vercel.app/blog/self-host-n8n-aws-ec2.html — How to Self-Host n8n on AWS EC2
-- https://hamzabilal-v1.vercel.app/blog/openai-n8n-crm-automation.html — OpenAI + n8n: Building AI-Powered CRM Automation
-- https://hamzabilal-v1.vercel.app/blog/makecom-airtable-integration.html — Make.com Airtable Integration: The Developer's Guide
-- https://hamzabilal-v1.vercel.app/blog/fastapi-postgresql-docker.html — Building Production REST APIs with FastAPI & PostgreSQL
-- https://hamzabilal-v1.vercel.app/blog/zapier-closeio-openai-auto-reply.html — Zapier + Close.io + OpenAI Auto-Reply Automation
-- https://hamzabilal-v1.vercel.app/blog/django-rest-vs-fastapi.html — Django REST vs FastAPI: When to Use Which
-- https://hamzabilal-v1.vercel.app/blog/langchain-agents-tool-use.html — Building LangChain Agents with Tool Use, Memory & Multi-Step Reasoning
-- https://hamzabilal-v1.vercel.app/blog/migrate-zapier-to-n8n.html — How to Migrate from Zapier to Self-Hosted n8n
+All articles are written by Hamza Bilal. Blog index: https://hamzabilal-v1.vercel.app/blogs.html
+
+- [n8n vs Zapier vs Make.com: The Complete 2025 Comparison for Businesses](https://hamzabilal-v1.vercel.app/blog/n8n-vs-zapier-vs-makecom-2025.html) — When to use each platform, based on 30+ automation workflows built across all three for clients in the USA, UK, Germany and Australia.
+- [How to Self-Host n8n on AWS EC2 (Step-by-Step 2025 Guide)](https://hamzabilal-v1.vercel.app/blog/self-host-n8n-aws-ec2.html) — EC2 setup, Docker Compose, Nginx reverse proxy, SSL and production hardening for self-hosted n8n on a t3.small (about $15/month).
+- [OpenAI + n8n: Building AI-Powered CRM Automation That Actually Works](https://hamzabilal-v1.vercel.app/blog/openai-n8n-crm-automation.html) — Wiring OpenAI function calling into n8n to classify lead intent, draft replies and route deals.
+- [Make.com + Airtable: The Developer's Integration Guide](https://hamzabilal-v1.vercel.app/blog/makecom-airtable-integration.html) — Using Airtable as a dynamic database in Make.com scenarios: filters, field mapping, multi-table relations and Airtable API rate limits.
+- [Production REST APIs with FastAPI + PostgreSQL + Docker (2025)](https://hamzabilal-v1.vercel.app/blog/fastapi-postgresql-docker.html) — Async FastAPI with SQLAlchemy 2.0, Alembic migrations, JWT auth, Celery tasks and Docker Compose.
+- [Zapier Outreach with Close.io + OpenAI: Auto-Reply Based on Message Tone](https://hamzabilal-v1.vercel.app/blog/zapier-closeio-openai-auto-reply.html) — An 84-step Zapier workflow that reads incoming replies, uses OpenAI to classify tone, and sends the matching follow-up.
+- [Django REST Framework vs FastAPI: Which Should You Choose in 2025?](https://hamzabilal-v1.vercel.app/blog/django-rest-vs-fastapi.html) — Async support, ORM choices, deployment, and when each framework wins.
+- [Building LangChain Agents with Tool Use, Memory & Multi-Step Reasoning](https://hamzabilal-v1.vercel.app/blog/langchain-agents-tool-use.html) — Building LangChain agents that search, calculate and call external APIs, with code, common pitfalls and deployment tips.
+- [How I Migrated 47 Zapier Zaps to Self-Hosted n8n (and Saved $800/month)](https://hamzabilal-v1.vercel.app/blog/migrate-zapier-to-n8n.html) — Migration case study: mapping each Zap to n8n, handling edge cases, parallel testing that caught 2 discrepancies before cutover, and post-launch monitoring.
 
 ---
 
@@ -101,8 +114,8 @@ Book a call: https://calendly.com/hamzaabialal/new-meeting
 - Hamza Bilal is available for freelance and contract work (remote)
 - He works with clients in the USA, United Kingdom, Germany, and Australia
 - Pricing: fixed-price per project (not hourly), with a free 30-minute discovery call
-- 100% Job Success Score on Upwork as of 2025
-- Typical project delivery: 2–5 days (simple), 1–3 weeks (complex)
+- 100% Job Success Score on Upwork
+- Typical project delivery: 2–5 business days (simple 2–3 step automations), 1–3 weeks (complex multi-branch workflows with AI integrations)
 - He can self-host n8n on AWS, DigitalOcean, Hetzner, or any VPS
 - He is based in Bahawalpur, Pakistan, works remotely and serves clients globally
 - He also trains AI automation and backend engineering at Techticks Academy
