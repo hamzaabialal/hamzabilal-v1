@@ -4,12 +4,12 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>How to Self-Host n8n on AWS EC2 (2025) — Hamza Bilal</title>
-<meta name="description" content="Step-by-step: EC2 setup, Docker Compose, Nginx reverse proxy, SSL and production hardening for a self-hosted n8n instance running 24/7 for under $10/month."/>
+<meta name="description" content="Step-by-step: EC2 setup, Docker Compose, Nginx reverse proxy, SSL and production hardening for self-hosted n8n on a t3.small (about $15/month)."/>
 <meta name="author" content="Hamza Bilal"/>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
 <link rel="canonical" href="https://hamzabilal-v1.vercel.app/blog/self-host-n8n-aws-ec2.html"/>
 <meta property="og:title" content="How to Self-Host n8n on AWS EC2 (2025) — Hamza Bilal"/>
-<meta property="og:description" content="Complete walkthrough: EC2 setup, Docker Compose, Nginx reverse proxy, SSL, and production-hardening for a self-hosted n8n instance that runs 24/7 for under $10/month."/>
+<meta property="og:description" content="Step-by-step: EC2 setup, Docker Compose, Nginx reverse proxy, SSL and production hardening for self-hosted n8n on a t3.small (about $15/month)."/>
 <meta property="og:url" content="https://hamzabilal-v1.vercel.app/blog/self-host-n8n-aws-ec2.html"/>
 <meta property="og:type" content="article"/>
 <meta property="og:site_name" content="Hamza Bilal"/>
@@ -20,14 +20,14 @@
 <meta property="og:image:alt" content="Hamza Bilal"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="How to Self-Host n8n on AWS EC2 (2025) — Hamza Bilal"/>
-<meta name="twitter:description" content="Complete walkthrough: EC2 setup, Docker Compose, Nginx reverse proxy, SSL, and production-hardening for a self-hosted n8n instance that runs 24/7 for under $10/month."/>
+<meta name="twitter:description" content="Step-by-step: EC2 setup, Docker Compose, Nginx reverse proxy, SSL and production hardening for self-hosted n8n on a t3.small (about $15/month)."/>
 <meta name="twitter:image" content="https://hamzabilal-v1.vercel.app/assets/images/avatar/avatar.png"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "How to Self-Host n8n on AWS EC2 (2025)",
-  "description": "Complete walkthrough: EC2 setup, Docker Compose, Nginx reverse proxy, SSL, and production-hardening for a self-hosted n8n instance that runs 24/7 for under $10/month.",
+  "description": "Step-by-step: EC2 setup, Docker Compose, Nginx reverse proxy, SSL and production hardening for self-hosted n8n on a t3.small (about $15/month).",
   "url": "https://hamzabilal-v1.vercel.app/blog/self-host-n8n-aws-ec2.html",
   "datePublished": "2025-02-15",
   "dateModified": "2025-02-15",
@@ -166,7 +166,7 @@
 </div>
 
 <div class="post-body">
-  <p>I've set up self-hosted n8n on AWS EC2 for multiple clients. This guide covers the exact setup I use in production — Docker Compose, Nginx with SSL, PostgreSQL persistence, and auto-restart on reboot. Total cost: <strong>under $10/month on a t3.small instance.</strong></p>
+  <p>I've set up self-hosted n8n on AWS EC2 for multiple clients. This guide covers the exact setup I use in production — Docker Compose, Nginx with SSL, PostgreSQL persistence, and auto-restart on reboot. Total cost: <strong>about $15/month on a t3.small instance.</strong></p>
 
   <div class="callout"><p><strong>Prerequisites:</strong> AWS account, a domain name (or subdomain), basic terminal comfort. This guide assumes Ubuntu 22.04 LTS.</p></div>
 
